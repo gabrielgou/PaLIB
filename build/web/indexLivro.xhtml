@@ -9,7 +9,7 @@
 
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Livro: Adm</title>
     </h:head>
     <h:body>
         <b:form id="formIndexLivro" >
@@ -47,13 +47,7 @@
                                 </f:facet>
                                 <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
                                 <p:column headerText="Nome">
-                                    <h:outputText value="#{peca.nome}" />
-                                </p:column>
-                                <p:column headerText="Função">
-                                    <h:outputText value="#{peca.funcao}" />
-                                </p:column>
-                                <p:column headerText="Tipo">
-                                    <h:outputText value="#{peca.tipo}" />
+                                    <h:outputText value="#{tag.nome}" />
                                 </p:column>
                              </p:dataTable>
                         </b:panelGrid>
@@ -91,10 +85,12 @@
                         <f:facet name="header"><h3>#{item.nome}</h3></f:facet>
                         <img src="LivroFotoDownloader?idLivro=#{item.id}"
                              style="width: 20rem"></img><br/>
-                        <h:outputText value="Autor"/>
+                        <h:outputText value="Autor: "/>
                         <h:outputText value="${item.autor}"/><br/>
-                        <h:outputText value="Sinopse"/>
-                        <h:outputText value="${item.sinopse}"/>
+                        <h:outputText value="Sinopse: "/>
+                        <h:outputText value="${item.sinopse}"/><br/>
+                        <h:outputText value="Preço: "/>
+                        <h:outputText value="${item.preco}"/>
                         <!--<b:commandButton value="detalhar" 
                                          oncomplete="$('.modalDetalheContrato').modal('show')"
                                          ajax='true' update=":modalDetalheContrato">
@@ -107,31 +103,6 @@
 
         </div>
         </b:form>
-        <!--<b:modal id="modalDetalheContrato" class="modalDetalheContrato fade" 
-                 title="Detalhe do Contrato número #{contratoController.selecionado.codigo}">
-            
-            <img style="width:50%" src="ContratoFotoDownloader?idContrato=#{
-                 contratoController.selecionado.codigo}" align="middle"></img><br/>
-            <h4>Dados da Vítima</h4>
-            <b:panelGrid columns="2">
-                <h:outputText value="Nome"/>
-                <h:outputText value="#{contratoController.selecionado.vitima.nome}"/>
-            
-                <h:outputText value="Classe Social"/>
-                <h:outputText value="#{contratoController.selecionado.vitima.classeSocial}"/>
-            </b:panelGrid>
-            
-            <h4>dados dos lances</h4>
-            <b:panelGrid columns="2">
-               <h:outputText value="Quantidade de Lances"/>
-               <h:outputText value="#{contratoController.selecionado.lances.cotacoes.size()}"/> 
-            </b:panelGrid>
-            
-                <b:button value="ver lances" href="lances.xhtml"
-                                  look="primary"/>
-            
-        </b:modal>-->
-
     </h:body>
 </html>
 

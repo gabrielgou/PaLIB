@@ -43,7 +43,7 @@ public class LivroFotoDownloader extends HttpServlet {
         Livro l = (Livro)ManagerDao.getCurrentInstance().
                 read("select l from Livro l where l.id="+idLivro, Livro.class).get(0);
         
-            response.setContentType("image/jpg");
+            response.setContentType("image/jpeg");
         
             response.getOutputStream().write(l.getCapa(), 0, l.getCapa().length);
         }

@@ -48,7 +48,7 @@ public class LivroController implements Serializable {
         return "indexLivro";
               
     }
-    public void handleFotoVitima(FileUploadEvent event){
+    public void handleFotoLivro(FileUploadEvent event){
         this.binaryPhoto = (event.getFile().getContent());        
         FacesContext.getCurrentInstance().addMessage("formCadLivro:fotoUploader", new FacesMessage("Foto inserida com sucesso"));
     }
