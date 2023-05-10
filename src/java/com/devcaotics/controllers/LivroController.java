@@ -1,0 +1,108 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.devcaotics.controllers;
+
+import com.devcaotics.dao.ManagerDao;
+import com.devcaotics.model.Livro;
+import com.devcaotics.model.Usuario;
+import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.FileUploadEvent;
+
+/**
+ *
+ * @author gabri
+ */
+@ManagedBean(name = "livroController")
+@SessionScoped
+public class LivroController implements Serializable {
+    private Livro livro;
+    private Livro selLivro;
+    private byte[] binaryPhoto;
+     @PostConstruct
+    public void init()
+    {
+        this.livro = new Livro();
+    }
+    public String cadastrar()
+    {
+        if(livro.getNome()==null)
+        {
+             FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro!","Livro sem nome!"));
+             return null;
+        }
+        livro.setCapa(binaryPhoto);
+        ManagerDao.getCurrentInstance().insert(this.livro);
+        livro = new Livro();
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO,"Sucesso!","Livro cadastrado com sucesso!"));
+        return "indexLivro";
+              
+    }
+    public void handleFotoVitima(FileUploadEvent event){
+        this.binaryPhoto = (event.getFile().getContent());        
+        FacesContext.getCurrentInstance().addMessage("formCadLivro:fotoUploader", new FacesMessage("Foto inserida com sucesso"));
+    }
+     public List<Livro> readAll(){
+        
+        List<Livro> livros = ManagerDao.getCurrentInstance()
+                .read("select l from Livro l", 
+                        Livro.class);
+        return livros;
+    }
+    public void clearSelection(){
+        
+        this.selLivro = null;
+        
+    }
+    public void alterar(){
+        
+        ManagerDao.getCurrentInstance().update(this.selLivro);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Livro alterado com sucesso!"));
+                
+    }
+    public void deletar(){
+        ManagerDao.getCurrentInstance().delete(this.selLivro);
+    
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Livro deletado com sucesso!"));
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public Livro getSelLivro() {
+        return selLivro;
+    }
+
+    public void setSelLivro(Livro selLivro) {
+        this.selLivro = selLivro;
+    }
+
+    public byte[] getBinaryPhoto() {
+        return binaryPhoto;
+    }
+
+    public void setBinaryPhoto(byte[] binaryPhoto) {
+        this.binaryPhoto = binaryPhoto;
+    }
+    
+    
+    
+}
