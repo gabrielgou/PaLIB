@@ -62,7 +62,7 @@ public class LivroController implements Serializable {
     public void clearSelection(){
         
         this.selLivro = null;
-        
+       
     }
     public void alterar(){
         
