@@ -13,29 +13,33 @@
 
         <b:growl delay="4000" show-summary="true" show-detail="true"/>
 
-        <c:if test="#{loginController.administradorLogado ne null and loginController.tipoLogado eq 'administrador'}">
-            <script>location.href = "indexAdmin.xhtml"</script>
-        </c:if>
-
-        <c:if test="#{loginController.usuarioLogado ne null and loginController.tipoLogado eq 'usuario'}">
-            <script>location.href = "indexUsuario.xhtml"</script>
-        </c:if>
-
         <f:facet name="header">
             Carrinho
         </f:facet>
+        <b:form id="formCards">
+            <div style="display: flex">
 
-        <b:form id="formCarrinho">
-            <b:panelGrid columns="2">
+                <c:forEach items="#{livroController.readAll()}"
+                       var="item" varStatus="i">
+                    <p:card style="width: 25rem; margin-bottom: 2em; margin-left: 2em">
+                        <f:facet name="header"><h3>#{item.nome}</h3></f:facet>
+                        <img src="LivroFotoDownloader?idLivro=#{item.id}"
+                             style="width: 20rem"></img><br/>
+                        <h:outputText value="Autor: "/>
+                        <h:outputText value="${item.autor}"/><br/>
+                        <h:outputText value="Sinopse: "/>
+                        <h:outputText value="${item.sinopse}"/><br/>
+                        <h:outputText value="Preço: "/>
+                        <h:outputText value="${item.preco}"/><br/>
+                        <b:commandButton value="Adicionar Carrinho" action="#{compraLivroController.fazerCompra()}">
+                            <f:setPropertyActionListener value="#{item}" 
+                                                         target="#{compraLivroController.selLivro}"/>
+                        </b:commandButton>
+                    </p:card>
+                    
+            </c:forEach>
 
-                <h:outputText value="Livro"/>
-                <b:inputText value="#{compraLivroController.selLivro.nome}" readonly="readonly"/>
-
-                <h:outputText value="Valor"/>
-                <b:inputText value="#{compraLivroController.selLivro.preco}" readonly="readonly"/>
-
-            </b:panelGrid>
-            <b:commandButton value="Comprar" action="#{compraLivroController.fazerCompra()}"/>
+        </div>
         </b:form>
 
     </h:body>

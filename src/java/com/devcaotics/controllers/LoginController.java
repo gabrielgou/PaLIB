@@ -49,7 +49,7 @@ public class LoginController implements Serializable {
             this.usuarioLogado = user.get(0);
             this.tipoLogado = "usuario";
             
-            return "indexUser";
+            return "indexCompra";
         }
         
         List<Administrador> administrador = ManagerDao.getCurrentInstance().

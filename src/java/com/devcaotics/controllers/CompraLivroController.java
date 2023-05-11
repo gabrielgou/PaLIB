@@ -16,6 +16,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,47 +32,29 @@ public class CompraLivroController implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.selLivro = new Livro();
-        selLivro.setNome("Teste");
-        selLivro.setAutor("Teste");
-        selLivro.setCategoria("Teste");
-        selLivro.setSinopse("Teste");
-        selLivro.setPreco(2.5);
-        ManagerDao.getCurrentInstance().insert(selLivro);
-
-        Endereco ed = new Endereco();
-        ed.setBairro("Teste");
-        ed.setCidade("Teste");
-        ed.setNome("Teste");
-        ed.setNumero("Teste");
-        ed.setUser(usuarioLogado);
-        ManagerDao.getCurrentInstance().insert(ed);
-
-        this.usuarioLogado = new Usuario();
-        usuarioLogado.setApelido("Teste");
-        usuarioLogado.setCpf("Teste");
-        usuarioLogado.setEndereco(ed);
-        usuarioLogado.setNome("Teste");
-        usuarioLogado.setSenha("123");
-        usuarioLogado.setTelefone("123123123");
-        ManagerDao.getCurrentInstance().insert(usuarioLogado);
-
-        this.cobranca = null;
+        this.selLivro=null;
+        this.usuarioLogado=null;
+        this.cobranca = new Cobranca();
     }
 
-    public String fazerCompra() {
-        this.cobranca = new Cobranca();
+    public void fazerCompra() {
+        this.usuarioLogado = ((LoginController)((HttpSession)(FacesContext.
+                getCurrentInstance().getExternalContext().getSession(true))).
+                getAttribute("loginController")).getUsuarioLogado();
+        System.out.println("Usuario: " + usuarioLogado.getNome());
+        System.out.println("Livro: " + selLivro.getNome());
+        
         this.cobranca.setComprador(this.usuarioLogado);
         this.cobranca.setLivro(this.selLivro);
         this.cobranca.setValor(this.selLivro.getPreco());
         this.cobranca.setIsPago(false);
-
+            
         ManagerDao.getCurrentInstance().insert(this.cobranca);
-
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Cobrança criada, confirme o pagamento!"));
-
-        return "indexCobranca";
+        this.cobranca = new Cobranca();
+        FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Adicionado Ao Carrinho",
+                    "Finalize para gerar uma nova cobrança"));
     }
 
     public String realizarPagamento(boolean isPago) {

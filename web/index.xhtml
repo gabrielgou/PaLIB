@@ -13,14 +13,6 @@
 
         <b:growl delay="4000" show-summary="true" show-detail="true"/>
 
-        <c:if test="#{loginController.administradorLogado ne null and loginController.tipoLogado eq 'administrador'}">
-            <script>location.href = "indexAdmin.xhtml"</script>
-        </c:if>
-
-        <c:if test="#{loginController.usuarioLogado ne null and loginController.tipoLogado eq 'usuario'}">
-            <script>location.href = "indexUsuario.xhtml"</script>
-        </c:if>
-
         <b:jumbotron>
             Login: PALib
         </b:jumbotron>
@@ -47,8 +39,6 @@
                 <b:commandButton value="logar" style="float: right"
                                  style-class="btn btn-primary"
                                  action="#{loginController.logar(login, senha)}"/>
-                <b:commandButton value="Comprar" action="#{compraLivroController.fazerCompra()}"/>
-                <b:commandButton value="Confirmar Pagamento" action="#{compraLivroController.realizarPagamento(true)}"/>
             </b:form>
 
         </p:dialog>
