@@ -10,6 +10,97 @@ package com.devcaotics.model;
  */
 public class Boleto {
     
+  int interest_type = 0;
+  int interest_days_type = 0;
+  int fine_type= 0;
+  int discount_type = 0;
+  int charge_type= 1;
+  int dispatch_type = 1;
+  String document_type = "02";
+  String acceptance = "N";
+  Boolean prevent_pix= false;
+  int instructions_mode =  1;
+
+    public int getInterest_type() {
+        return interest_type;
+    }
+
+    public void setInterest_type(int interest_type) {
+        this.interest_type = interest_type;
+    }
+
+    public int getInterest_days_type() {
+        return interest_days_type;
+    }
+
+    public void setInterest_days_type(int interest_days_type) {
+        this.interest_days_type = interest_days_type;
+    }
+
+    public int getFine_type() {
+        return fine_type;
+    }
+
+    public void setFine_type(int fine_type) {
+        this.fine_type = fine_type;
+    }
+
+    public int getDiscount_type() {
+        return discount_type;
+    }
+
+    public void setDiscount_type(int discount_type) {
+        this.discount_type = discount_type;
+    }
+
+    public int getCharge_type() {
+        return charge_type;
+    }
+
+    public void setCharge_type(int charge_type) {
+        this.charge_type = charge_type;
+    }
+
+    public int getDispatch_type() {
+        return dispatch_type;
+    }
+
+    public void setDispatch_type(int dispatch_type) {
+        this.dispatch_type = dispatch_type;
+    }
+
+    public String getDocument_type() {
+        return document_type;
+    }
+
+    public void setDocument_type(String document_type) {
+        this.document_type = document_type;
+    }
+
+    public String getAcceptance() {
+        return acceptance;
+    }
+
+    public void setAcceptance(String acceptance) {
+        this.acceptance = acceptance;
+    }
+
+    public Boolean getPrevent_pix() {
+        return prevent_pix;
+    }
+
+    public void setPrevent_pix(Boolean prevent_pix) {
+        this.prevent_pix = prevent_pix;
+    }
+
+    public int getInstructions_mode() {
+        return instructions_mode;
+    }
+
+    public void setInstructions_mode(int instructions_mode) {
+        this.instructions_mode = instructions_mode;
+    }
+    
     Double amount;
     String expire_at; //pecisa de regra para entrar no formato 2023-12-31
     String customer_person_name;
@@ -20,11 +111,7 @@ public class Boleto {
     String customer_address;
     String customer_neighborhood;
 
-    public Boleto(Double amount, String expire_at, String customer_person_name, 
-            String customer_cnpj_cpf, String customer_state, 
-            String customer_city_name, String customer_zipcode, 
-            String customer_address, String customer_neighborhood) {
-        
+    public Boleto(Double amount, String expire_at, String customer_person_name, String customer_cnpj_cpf, String customer_state, String customer_city_name, String customer_zipcode, String customer_address, String customer_neighborhood) {
         this.amount = amount;
         this.expire_at = expire_at;
         this.customer_person_name = customer_person_name;
@@ -35,6 +122,8 @@ public class Boleto {
         this.customer_address = customer_address;
         this.customer_neighborhood = customer_neighborhood;
     }
+
+   
     
 
     public Double getAmount() {

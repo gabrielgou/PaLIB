@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,29 +27,17 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author rapha
  */
 
-@WebServlet (name = "PagamentoBoletoPix", urlPatterns = {"/Pagamento"})
+@WebServlet (name = "PagamentoBoletoPix", urlPatterns = {"/PagamentoBoletoPix"})
 
 public class PagamentoBoletoPix extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     
-   
-    
-    
-    
+   /* 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+           
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -61,35 +50,36 @@ public class PagamentoBoletoPix extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+*/
+   
     
-    
+    /*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        //processRequest(request, response);
+        
+        response.setContentType("text/html; charset=UTF-8");
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+            PrintWriter out = response.getWriter();
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Teste</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Entrou aqui</h2>");
+            out.println("</body>");
+            out.println("</html>");
+        
+    }
+*/
+ 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.getOutputStream();
         
         // URL da API que você deseja consumir
         String apiUrl = "https://api-sandbox.kobana.com.br/v1/bank_billets";
@@ -135,13 +125,17 @@ public class PagamentoBoletoPix extends HttpServlet {
         outputStream.flush();
         outputStream.close();
 
+       
+        
         // Verifica se a resposta da API é bem-sucedida
         int responseCode = connection.getResponseCode();
+        
         if (responseCode == HttpURLConnection.HTTP_OK) {
             // Lê a resposta da API
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             StringBuilder responseContent = new StringBuilder();
+            
 
             while ((line = reader.readLine()) != null) {
                 responseContent.append(line);
@@ -150,6 +144,7 @@ public class PagamentoBoletoPix extends HttpServlet {
 
             // Imprime a resposta no console
             System.out.println(responseContent.toString());
+            
 
             // Você pode fazer o que quiser com a resposta da API aqui,
             // como enviar para o cliente ou manipular os dados.
