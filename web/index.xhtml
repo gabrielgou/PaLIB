@@ -40,7 +40,12 @@
                                  style-class="btn btn-primary"
                                  action="#{loginController.logar(login, senha)}"/>
             </b:form>
-
+            
+            <b:form id="formPagamento">
+                <b:commandButton value="realizarPagamaneto" style="float: right"
+                                 style-class="btn btn-primary"
+                                 action="#{pagamentoController.realizarPagamento()}"/>
+            </b:form>
         </p:dialog>
 
         <b:modal id="modalCadUsuario" style-class="fade modal-fade"
@@ -81,6 +86,7 @@
 
                 </b:panelGrid>
                 <b:commandButton value="registrar" action="#{usuarioController.inserir(senha)}"/>
+            
             </b:form>
 
         </b:modal>
