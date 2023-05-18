@@ -82,7 +82,6 @@ public class PagamentoBoletoPix extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Usuario u = objectMapper.readValue(request.getParameter("Pedido"), Usuario.class);
         response.getOutputStream();
         
         // URL da API que você deseja consumir
