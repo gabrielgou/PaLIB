@@ -34,7 +34,8 @@ public class Livro {
     @ManyToMany(fetch = FetchType.LAZY)
     List<Tag> tags;
     @Lob
-    private byte[] content;
+    private byte[] pdf;
+    @Lob
     private byte[] capa;
     public Livro() {
         this.tags = new ArrayList<>();
@@ -84,12 +85,12 @@ public class Livro {
         this.tags.add(tag);
     }
 
-    public byte[] getContent() {
-        return content;
+    public byte[] getPDF() {
+        return pdf;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
+    public void setPDF(byte[] pdf) {
+        this.pdf = pdf;
     }
 
     public byte[] getCapa() {

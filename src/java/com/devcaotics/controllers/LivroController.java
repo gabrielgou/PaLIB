@@ -27,6 +27,7 @@ public class LivroController implements Serializable {
     private Livro livro;
     private Livro selLivro;
     private byte[] binaryPhoto;
+    private byte[] binaryPDF;
      @PostConstruct
     public void init()
     {
@@ -41,6 +42,7 @@ public class LivroController implements Serializable {
              return null;
         }
         livro.setCapa(binaryPhoto);
+        livro.setPDF(binaryPDF);
         ManagerDao.getCurrentInstance().insert(this.livro);
         livro = new Livro();
         FacesContext.getCurrentInstance().addMessage(null,
@@ -51,6 +53,10 @@ public class LivroController implements Serializable {
     public void handleFotoLivro(FileUploadEvent event){
         this.binaryPhoto = (event.getFile().getContent());        
         FacesContext.getCurrentInstance().addMessage("formCadLivro:fotoUploader", new FacesMessage("Foto inserida com sucesso"));
+    }
+    public void handlePDFLivro(FileUploadEvent event){
+        this.binaryPDF = (event.getFile().getContent());        
+        FacesContext.getCurrentInstance().addMessage("formCadLivro:pdfUploader", new FacesMessage("Upload de PDF com sucesso"));
     }
      public List<Livro> readAll(){
         
@@ -101,6 +107,14 @@ public class LivroController implements Serializable {
 
     public void setBinaryPhoto(byte[] binaryPhoto) {
         this.binaryPhoto = binaryPhoto;
+    }
+
+    public byte[] getBinaryPDF() {
+        return binaryPDF;
+    }
+
+    public void setBinaryPDF(byte[] binaryPDF) {
+        this.binaryPDF = binaryPDF;
     }
     
     

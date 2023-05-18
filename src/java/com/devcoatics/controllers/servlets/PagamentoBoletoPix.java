@@ -5,6 +5,7 @@
 package com.devcoatics.controllers.servlets;
 
 import com.devcaotics.model.Boleto;
+import com.devcaotics.model.Usuario;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONObject;
 
 
 
@@ -79,6 +81,8 @@ public class PagamentoBoletoPix extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Usuario u = objectMapper.readValue(request.getParameter("Pedido"), Usuario.class);
         response.getOutputStream();
         
         // URL da API que você deseja consumir
@@ -115,7 +119,6 @@ public class PagamentoBoletoPix extends HttpServlet {
                 
         );
         //transfoma em json o objeto
-        ObjectMapper objectMapper = new ObjectMapper();
         String jsonBody = objectMapper.writeValueAsString(boleto);
         
         
@@ -135,7 +138,6 @@ public class PagamentoBoletoPix extends HttpServlet {
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             StringBuilder responseContent = new StringBuilder();
-            
 
             while ((line = reader.readLine()) != null) {
                 responseContent.append(line);

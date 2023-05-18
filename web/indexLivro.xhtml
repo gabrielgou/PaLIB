@@ -52,17 +52,26 @@
                              </p:dataTable>
                         </b:panelGrid>
 
-                        <b:button value="próximo" look="primary" onclick="$('#formCadLivro_TabFotoLivro_tab').click()" /> 
+                        <b:button value="próximo" look="primary" onclick="$('#formCadLivro_TabUploadsLivro_tab').click()" /> 
                     </b:tab>
 
-                    <b:tab title="Foto do Livro" id="TabFotoLivro" >
+                    <b:tab title="Uploads do Livro" id="TabUploadsLivro" >
                         <b:panel id="panel1">
-                            <p:fileUpload id="fotoUploader" listener="#{livroController.handleFotoLivro}"
+                            <h:outputText value="Capa"/>
+                            <p:fileUpload label="Capa" id="fotoUploader" listener="#{livroController.handleFotoLivro}"
                                           mode="advanced" dragDropSupport="false" fileLimit="1" allowTypes="/(\.|\/)(jpe?g)$/"
                                           update="panel1"/>
 
                             <c:if test="#{livroController.binaryPhoto!=null}">
                                 <h6>Foto Adicionada</h6>
+                            </c:if>
+                            <h:outputText value="PDF"/>
+                            <p:fileUpload label="PDF" id="pdfUploader" listener="#{livroController.handlePDFLivro}"
+                                          mode="advanced" dragDropSupport="false" fileLimit="1" allowTypes="/(\.|\/)(pdf)$/"
+                                          update="panel1"/>
+
+                            <c:if test="#{livroController.binaryPDF!=null}">
+                                <h6>Upload de PDF concluido</h6>
                             </c:if>
                         </b:panel>
 
@@ -90,7 +99,11 @@
                         <h:outputText value="Sinopse: "/>
                         <h:outputText value="${item.sinopse}"/><br/>
                         <h:outputText value="Preço: "/>
-                        <h:outputText value="${item.preco}"/>
+                        <h:outputText value="${item.preco}"/><br/>
+                        <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
+                         icon="pi pi-arrow-down" styleClass="mr-2">
+                            <p:fileDownload  value="#{FileDownload.getFile(item.id)}"/>
+                        </p:commandButton>
                         <!--<b:commandButton value="detalhar" 
                                          oncomplete="$('.modalDetalheContrato').modal('show')"
                                          ajax='true' update=":modalDetalheContrato">
