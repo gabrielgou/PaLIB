@@ -33,6 +33,8 @@ public class Endereco {
     private String bairro;
     @Column
     private String cidade;
+    private String uf;
+    private String cep;
     @OneToOne
     private Usuario user;
     public String getNome() {
@@ -82,5 +84,22 @@ public class Endereco {
     public void setUser(Usuario user) {
         this.user = user;
     }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+    
     
 }

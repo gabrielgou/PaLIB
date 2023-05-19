@@ -5,11 +5,13 @@
  */
 package com.devcaotics.model;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -23,11 +25,18 @@ public class Pedido {
     private long id;
     @OneToOne
     private Usuario user;
-    @OneToOne
-    private Boleto boleto;
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean pago;
+    @ManyToMany
+    private List<Livro> livros;
+    
+    public Pedido(){}
 
+    public Pedido(Usuario user, List<Livro> livros) {
+        this.user = user;
+        this.livros = livros;
+    }   
+    
     public long getId() {
         return id;
     }
@@ -44,14 +53,6 @@ public class Pedido {
         this.user = user;
     }
 
-    public Boleto getBoleto() {
-        return boleto;
-    }
-
-    public void setBoleto(Boleto boleto) {
-        this.boleto = boleto;
-    }
-
     public boolean isPago() {
         return pago;
     }
@@ -59,6 +60,4 @@ public class Pedido {
     public void setPago(boolean pago) {
         this.pago = pago;
     }
-    
-    
 }

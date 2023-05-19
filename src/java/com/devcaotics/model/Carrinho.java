@@ -5,6 +5,8 @@
  */
 package com.devcaotics.model;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,17 +15,25 @@ import java.util.List;
  */
 public class Carrinho {
     private Carrinho myself;
+    private List<Livro> livros; 
     private Carrinho()
     {
-        
+        this.livros=new ArrayList<>();
     }
     public Carrinho getCurrentInstance()
     {
-        if(myself==null)
+        if(this.myself==null)
         {
-            myself = new Carrinho();
+            this.myself = new Carrinho();
         }
         return this.myself;
     }
-    private List<Livro> livros;    
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }       
 }

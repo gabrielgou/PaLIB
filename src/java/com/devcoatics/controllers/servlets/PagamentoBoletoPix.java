@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 
 
@@ -119,8 +120,6 @@ public class PagamentoBoletoPix extends HttpServlet {
         );
         //transfoma em json o objeto
         String jsonBody = objectMapper.writeValueAsString(boleto);
-        
-        
         DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
         outputStream.writeBytes(jsonBody);
         System.out.println(jsonBody);

@@ -8,7 +8,6 @@ package com.devcaotics.model;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +21,7 @@ import javax.persistence.TemporalType;
  *
  * @author gabri
  */
+
 @Entity
 public class Usuario {
     @Id
@@ -32,7 +32,6 @@ public class Usuario {
     private Date dataNasc;
     private String senha;
     private String nome;
-    private String apelido;
     private String telefone;
     @OneToOne(cascade = CascadeType.PERSIST)
     private Endereco endereco;
@@ -67,22 +66,13 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getApelido() {
-        return apelido;
+    
+    public String getNome() {
+        return nome;
     }
-
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
-    }
-
     public Endereco getEndereco() {
         return endereco;
     }

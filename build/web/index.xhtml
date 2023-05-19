@@ -52,39 +52,66 @@
                  title="Cadastre-se em nosso sistema">
 
             <b:form id="formCadUsuario">
-                <b:panelGrid columns="2">
-
+                <p:panelGrid columns="3" layout="grid">
+                    
                     <h:outputText value="Nome"/>
-                    <b:inputText value="#{usuarioController.user.nome}" required="true" required-message="Nome Completo"/>
-
-                    <h:outputText value="Nick"/>
-                    <b:inputText value="#{usuarioController.user.apelido}" required="true" required-message="Lembre do Nick"/>
-
+                    <b:inputText id="nameValidator" validator="nameValidator" validatorMessage="Preencha corretamente o campo de nome." 
+                                 value="#{usuarioController.user.nome}" required="true" >
+                        <p:ajax event="change" update="@form"/>
+                    </b:inputText>
+                    <h:message for="nameValidator" style="color:red"/>
+                    
                     <h:outputText value="CPF"/>
-                    <b:inputText value="#{usuarioController.user.cpf}"/>
-
+                    <b:inputText id="cpfValidator" validator="CPFValidator" validator-message="CPF Invalido!" value="#{usuarioController.user.cpf}"
+                                 required="true">
+                        <p:ajax event="change" update="@form"/>
+                    </b:inputText>
+                    <h:message for="cpfValidator" style="color:red"/>
+                    
                     <h:outputText value="Telefone"/>
-                    <b:inputText value="#{usuarioController.user.telefone}"/>
+                    <b:inputText id="telefoneValidator" value="#{usuarioController.user.telefone}" validator="telefoneValidator" 
+                                 required="true" placeholder="81999999999" validator-message="Celular Inválido">
+                        <p:ajax event="change" update="@form"/>
+                    </b:inputText>
+                    <h:message for="telefoneValidator" style="color:red"/>
+                
+                
+                    <h:outputText value="CEP"/>
+                    <b:inputText value="#{usuarioController.cep}">
+                        <p:ajax event="change" process="@this"/>
+                    </b:inputText>
+                    <b:commandButton value="Preencher CEP" action="#{usuarioController.getPreencherCEP}"> 
+                        <p:ajax event="click" update="@form"/>
+                    </b:commandButton>
+                </p:panelGrid>
+                <p:panel>
+                    <p:panelGrid columns="2" layout="grid">
+                        <h:outputText value="Rua"/>
+                        <h:outputText value="#{usuarioController.user.endereco.nome}"/>
 
-                    <h:outputText value="Rua"/>
-                    <b:inputText value="#{usuarioController.user.endereco.nome}"/>
+                        <h:outputText value="Bairro"/>
+                        <h:outputText value="#{usuarioController.user.endereco.bairro}"/>
 
-                    <h:outputText value="Bairro"/>
-                    <b:inputText value="#{usuarioController.user.endereco.bairro}"/>
+                        <h:outputText value="Numero"/>
+                        <p:inputNumber value="#{usuarioController.user.endereco.numero}" decimalPlaces="0" required="true"
+                                       requiredMessage="Preencha o numero da casa"/>
 
-                    <h:outputText value="Numero"/>
-                    <b:inputText value="#{usuarioController.user.endereco.numero}"/>
-
-                    <h:outputText value="Cidade"/>
-                    <b:inputText value="#{usuarioController.user.endereco.cidade}"/>
-
+                        <h:outputText value="Cidade"/>
+                        <h:outputText value="#{usuarioController.user.endereco.cidade}"/>
+                    </p:panelGrid>
+                </p:panel>
+                <p:panelGrid columns="3" layout="grid">
                     <h:outputText value="Senha"/>
-                    <b:inputSecret value="#{usuarioController.user.senha}" required="true" required-message="Preencha a Senha"/>
-
+                    <b:inputSecret id="senhaValidator" value="#{usuarioController.user.senha}" validator="senhaValidator" validator-message="Senha Fraca!"
+                                   required="true" required-message="Preencha a Senha">
+                        <p:ajax event="change" update="@form"/>
+                    </b:inputSecret>
+                    <h:message for="senhaValidator" style="color: red"/>
+                    
                     <h:outputText value="Confirmar Senha"/>
-                    <b:inputSecret value="#{senha}"/>
-
-                </b:panelGrid>
+                    <b:inputSecret id="senha2Validator" value="#{senha}" required="true"/>
+                    <h:message for="senha2Validator" style="color: red"/>
+                </p:panelGrid>
                 <b:commandButton value="registrar" action="#{usuarioController.inserir(senha)}"/>
             
             </b:form>
