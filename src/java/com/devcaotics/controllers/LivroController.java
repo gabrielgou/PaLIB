@@ -58,7 +58,8 @@ public class LivroController implements Serializable {
         this.binaryPDF = (event.getFile().getContent());        
         FacesContext.getCurrentInstance().addMessage("formCadLivro:pdfUploader", new FacesMessage("Upload de PDF com sucesso"));
     }
-     public List<Livro> readAll(){
+    
+    public List<Livro> readAll(){
         
         List<Livro> livros = ManagerDao.getCurrentInstance()
                 .read("select l from Livro l", 

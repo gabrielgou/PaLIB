@@ -5,6 +5,9 @@
 package com.devcaotics.controllers;
 
 import com.devcaotics.model.Boleto;
+import com.devcaotics.model.BoletoResponse;
+import com.devcaotics.model.Livro;
+import com.devcaotics.model.Usuario;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -26,10 +29,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 @ManagedBean (name = "pagamentoController")
 @SessionScoped
 public class PagamentoController implements Serializable{
-    
    
+    String urlBoleto = null;
     
-public void realizarPagamento() throws Exception {
+public BoletoResponse realizarPagamento(Livro livro, Usuario user) throws Exception {
     URL url = new URL("https://api-sandbox.kobana.com.br/v1/bank_billets");
     HttpURLConnection requisicao = (HttpURLConnection) url.openConnection();
     requisicao.setRequestMethod("POST");
@@ -43,17 +46,29 @@ public void realizarPagamento() throws Exception {
 
     OutputStream outputStream = requisicao.getOutputStream();
 
-    Boleto boleto = new Boleto(
-        14.85,
-        "2023-05-18",
-        "JOSÉ ALFREDO",
-        "850.927.528-90",
-        "SE",
-        "Aracaju",
-        "49030360",
-        "Rua Francolino Rodrigues Lima",
-        "Farolândia"
-    );
+//    Boleto boleto = new Boleto(
+//        14.85,
+//        "2023-05-22",
+//        "JOSÉ ALFREDO",
+//        "850.927.528-90",
+//        "SE",
+//        "Aracaju",
+//        "49030360",
+//        "Rua Francolino Rodrigues Lima",
+//        "Farolândia"
+//    );
+    
+    Boleto boleto = new Boleto();
+    
+    boleto.setAmount(livro.getPreco());
+    boleto.setExpire_at("2023-05-23");
+    boleto.setCustomer_person_name(user.getNome());
+    boleto.setCustomer_cnpj_cpf(user.getCpf());
+    boleto.setCustomer_state(user.getEndereco().getUf());
+    boleto.setCustomer_city_name(user.getEndereco().getCidade());
+    boleto.setCustomer_zipcode("51020260");
+    boleto.setCustomer_address(user.getEndereco().getBairro() + " - " + user.getEndereco().getCidade() + " - " + user.getEndereco().getUf());
+    boleto.setCustomer_neighborhood(user.getEndereco().getBairro());
 
     // Converte o objeto em JSON
     ObjectMapper objectMapper = new ObjectMapper();
@@ -80,8 +95,25 @@ public void realizarPagamento() throws Exception {
         response.append(line);
     }
     reader.close();
-
-    String jsonDeResposta = response.toString();
+    
+    BoletoResponse boletoResponse = objectMapper.readValue(response.toString(), BoletoResponse.class);
+    
+//    String jsonDeResposta = response.toString();
+    
+    
+    System.out.println(boletoResponse.getFormats().getPng());
+    
+    urlBoleto = boletoResponse.getFormats().getPng();
+    
+    return boletoResponse;
 }
+
+    public String getUrlBoleto() {
+        return urlBoleto;
+    }
+
+    public void setUrlBoleto(String urlBoleto) {
+        this.urlBoleto = urlBoleto;
+    }
 
 }

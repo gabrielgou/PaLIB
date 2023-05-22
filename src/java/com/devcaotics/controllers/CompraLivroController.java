@@ -16,6 +16,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -32,8 +33,8 @@ public class CompraLivroController implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.selLivro=null;
-        this.usuarioLogado=null;
+        this.selLivro = null; 
+        this.usuarioLogado = null;
         this.cobranca = new Cobranca();
     }
 
@@ -42,11 +43,11 @@ public class CompraLivroController implements Serializable {
                 getCurrentInstance().getExternalContext().getSession(true))).
                 getAttribute("loginController")).getUsuarioLogado();
         System.out.println("Usuario: " + usuarioLogado.getNome());
-        System.out.println("Livro: " + selLivro.getNome());
+//        System.out.println("Livro: " + selLivro.getNome());
         
         this.cobranca.setComprador(this.usuarioLogado);
-        this.cobranca.setLivro(this.selLivro);
-        this.cobranca.setValor(this.selLivro.getPreco());
+//        this.cobranca.setLivro(this.selLivro);
+//        this.cobranca.setValor(this.selLivro.getPreco());
         this.cobranca.setIsPago(false);
             
         ManagerDao.getCurrentInstance().insert(this.cobranca);
@@ -76,7 +77,11 @@ public class CompraLivroController implements Serializable {
             return "indexCobranca";
         }
     }
-
+    
+    public void gerarBoleto(Livro livro) {
+                
+    }
+    
     public Livro getSelLivro() {
         return selLivro;
     }

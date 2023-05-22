@@ -10,9 +10,10 @@
         <title>Login Do Sistema PaLib</title>
     </h:head>
     <h:body>
-
         <b:growl delay="4000" show-summary="true" show-detail="true"/>
-
+        
+        <b:jumbotron style="height: 5px; padding-left: 10px">Você está logado como: ${compraLivroController.usuarioLogado.nome}, com CPF ${compraLivroController.usuarioLogado.cpf}.</b:jumbotron>
+        
         <f:facet name="header">
             Carrinho
         </f:facet>
@@ -20,7 +21,7 @@
             <div style="display: flex">
 
                 <c:forEach items="#{livroController.readAll()}"
-                       var="item" varStatus="i">
+                       var="item" varStatus="i"> 
                     <p:card style="width: 25rem; margin-bottom: 2em; margin-left: 2em">
                         <f:facet name="header"><h3>#{item.nome}</h3></f:facet>
                         <img src="LivroFotoDownloader?idLivro=#{item.id}"
@@ -31,17 +32,35 @@
                         <h:outputText value="${item.sinopse}"/><br/>
                         <h:outputText value="Preço: "/>
                         <h:outputText value="${item.preco}"/><br/>
-                        <b:commandButton value="Adicionar Carrinho" action="#{compraLivroController.fazerCompra()}">
+<!--                    <b:commandButton value="Adicionar Carrinho" action="#{compraLivroController.fazerCompra()}">
                             <f:setPropertyActionListener value="#{item}" 
-                                                         target="#{compraLivroController.selLivro}"/>
-                        </b:commandButton>
+                                                         target="#{compraLivroController.selLivro}"/> -->
+                       
+
+                        <p:commandButton value="Comprar" oncomplete="PF('widDialogAdicionarCarrinho').show()"
+                                         update=':dialogAdicionarCarrinho' > 
+                            <f:setPropertyActionListener value="${item}" target="${compraLivroController.selLivro}"/>
+                        </p:commandButton>
+
                     </p:card>
                     
-            </c:forEach>
-
-        </div>
+                    
+                    
+                </c:forEach>
+            </div>
         </b:form>
-
+        
+        <p:dialog id="dialogAdicionarCarrinho" resizable="false" draggable="false" modal='true' widgetVar='widDialogAdicionarCarrinho'
+                  visible='false'>
+            <img src="${pagamentoController.urlBoleto}"
+                             style="width: 20rem"></img><br/>
+            <h:outputText value='Nome: #{compraLivroController.selLivro.nome}' /> <br/>
+            <h:outputText value='Valor: #{compraLivroController.selLivro.preco}' /> <br/>
+            <h:outputText value='Autor: #{compraLivroController.selLivro.autor}' /> <br/>
+            <p:commandButton value="Gerar boleto" action="${pagamentoController.realizarPagamento(compraLivroController.selLivro, 
+                                                            compraLivroController.usuarioLogado)}" update=":dialogAdicionarCarrinho"/>
+        </p:dialog>
+                   
     </h:body>
 </html>
 
