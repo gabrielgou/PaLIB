@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.Base64;
 import java.util.Scanner;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -22,7 +23,6 @@ import org.codehaus.jackson.map.ObjectMapper;
  *
  * @author rapha
  */
-
 @ManagedBean (name = "pagamentoController")
 @SessionScoped
 public class PagamentoController implements Serializable{
