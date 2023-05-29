@@ -70,12 +70,14 @@
                     
                     <h:outputText value="Telefone"/>
                     <b:inputText id="telefoneValidator" value="#{usuarioController.user.telefone}" validator="telefoneValidator" 
-                                 required="true" placeholder="81999999999" validator-message="Celular Inválido">
-                        <p:ajax event="change" update="@form"/>
+                                 required="true" placeholder="81999999999" validatorMessage="Celular Inválido" type="number"
+                                 >
+                        <p:ajax event="change" update="@form"/> 
                     </b:inputText>
                     <h:message for="telefoneValidator" style="color:red"/>               
                     <h:outputText value="CEP"/>
-                    <b:inputText id="cepValidator" value="#{usuarioController.cep}" validator="cepValidator" validator-message="CEP Incorreto">
+                    <b:inputText id="cepValidator" value="#{usuarioController.cep}" validator="cepValidator" validator-message="CEP Incorreto"
+                                 type="number">
                         <p:ajax event="change" process="@this" update="@form:labelCEP"/>
                     </b:inputText>
                     <h:message id="labelCEP" for="cepValidator" style="color:red"/>
