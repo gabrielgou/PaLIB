@@ -45,23 +45,11 @@ public BoletoResponse realizarPagamento(Livro livro, Usuario user) throws Except
     requisicao.setDoOutput(true);
 
     OutputStream outputStream = requisicao.getOutputStream();
-
-//    Boleto boleto = new Boleto(
-//        14.85,
-//        "2023-05-22",
-//        "JOSÉ ALFREDO",
-//        "850.927.528-90",
-//        "SE",
-//        "Aracaju",
-//        "49030360",
-//        "Rua Francolino Rodrigues Lima",
-//        "Farolândia"
-//    );
     
     Boleto boleto = new Boleto();
     
     boleto.setAmount(livro.getPreco());
-    boleto.setExpire_at("2023-05-23");
+    boleto.setExpire_at("2026-12-31");
     boleto.setCustomer_person_name(user.getNome());
     boleto.setCustomer_cnpj_cpf(user.getCpf());
     boleto.setCustomer_state(user.getEndereco().getUf());

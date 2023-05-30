@@ -53,12 +53,13 @@
         <p:dialog id="dialogAdicionarCarrinho" resizable="false" draggable="false" modal='true' widgetVar='widDialogAdicionarCarrinho'
                   visible='false'>
             <img src="${pagamentoController.urlBoleto}"
-                             style="width: 20rem"></img><br/>
+                             style="width: 35rem"></img><br/>
             <h:outputText value='Nome: #{compraLivroController.selLivro.nome}' /> <br/>
             <h:outputText value='Valor: #{compraLivroController.selLivro.preco}' /> <br/>
             <h:outputText value='Autor: #{compraLivroController.selLivro.autor}' /> <br/>
             <p:commandButton value="Gerar boleto" action="${pagamentoController.realizarPagamento(compraLivroController.selLivro, 
                                                             compraLivroController.usuarioLogado)}" update=":dialogAdicionarCarrinho"/>
+            
         </p:dialog>
                    
     </h:body>
