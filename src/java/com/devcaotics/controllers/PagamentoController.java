@@ -91,7 +91,7 @@ public BoletoResponse realizarPagamento(Livro livro, Usuario user) throws Except
     
     System.out.println(boletoResponse.getFormats().getPng());
     
-    urlBoleto = boletoResponse.getFormats().getPng();
+    urlBoleto = boletoResponse.getFormats().getBoleto_hibrido();
     
     return boletoResponse;
 }

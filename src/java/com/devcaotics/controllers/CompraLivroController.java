@@ -78,6 +78,8 @@ public class CompraLivroController implements Serializable {
         }
     }
     
+    
+    
     public void gerarBoleto(Livro livro) {
                 
     }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.devcaotics.controllers;
-
 import com.devcaotics.dao.ManagerDao;
 import com.devcaotics.model.Livro;
 import com.devcaotics.model.Usuario;

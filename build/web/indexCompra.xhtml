@@ -12,7 +12,7 @@
     <h:body>
         <b:growl delay="4000" show-summary="true" show-detail="true"/>
         
-        <b:jumbotron style="height: 5px; padding-left: 10px">Você está logado como: ${compraLivroController.usuarioLogado.nome}, com CPF ${compraLivroController.usuarioLogado.cpf}.</b:jumbotron>
+        <b:jumbotron style="height: 5px; padding-left: 10px">Você está logado como: ${loginController.usuarioLogado.nome}, com CPF ${loginController.usuarioLogado.cpf}.</b:jumbotron>
         
         <f:facet name="header">
             Carrinho
@@ -38,7 +38,9 @@
                        
 
                         <p:commandButton value="Comprar" oncomplete="PF('widDialogAdicionarCarrinho').show()"
-                                         update=':dialogAdicionarCarrinho' > 
+                                         update=':dialogAdicionarCarrinho' 
+                                         action="${pagamentoController.realizarPagamento(compraLivroController.selLivro, 
+                                                            compraLivroController.usuarioLogado)}"> 
                             <f:setPropertyActionListener value="${item}" target="${compraLivroController.selLivro}"/>
                         </p:commandButton>
 
@@ -50,15 +52,19 @@
             </div>
         </b:form>
         
-        <p:dialog id="dialogAdicionarCarrinho" resizable="false" draggable="false" modal='true' widgetVar='widDialogAdicionarCarrinho'
+        <p:dialog id="dialogAdicionarCarrinho" resizable="false" responsive="true" draggable="false" modal='true' widgetVar='widDialogAdicionarCarrinho'
                   visible='false'>
-            <img src="${pagamentoController.urlBoleto}"
-                             style="width: 35rem"></img><br/>
+            
+            <h4>Informações sobre o seu livro:</h4>
+            <img src="LivroFotoDownloader?idLivro=#{compraLivroController.selLivro.id}"
+                             style="width: 5rem;"/><br/>           
             <h:outputText value='Nome: #{compraLivroController.selLivro.nome}' /> <br/>
             <h:outputText value='Valor: #{compraLivroController.selLivro.preco}' /> <br/>
             <h:outputText value='Autor: #{compraLivroController.selLivro.autor}' /> <br/>
-            <p:commandButton value="Gerar boleto" action="${pagamentoController.realizarPagamento(compraLivroController.selLivro, 
-                                                            compraLivroController.usuarioLogado)}" update=":dialogAdicionarCarrinho"/>
+            <b:form>
+                <b:button value="Visualizar boleto" look="primary" href="#{pagamentoController.urlBoleto}" target="_blank"/>
+            </b:form>
+            
             
         </p:dialog>
                    
