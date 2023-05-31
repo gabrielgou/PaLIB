@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
-        <file>
-            <url>web/indexLivro.xhtml</url>
-            <bookmark id="2">
-                <name/>
-                <line>10</line>
-                <key/>
-            </bookmark>
-        </file>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
         <file>
             <url>src/java/com/devcaotics/controllers/UsuarioController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>94</line>
+                <line>93</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/angelomig/Documents/Faculdade/PaLIB/web/indexMeusPedidos.xhtml</file>
-            <file>file:/home/angelomig/Documents/Faculdade/PaLIB/src/java/com/devcaotics/controllers/PagamentoController.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/web/indexCompra.xhtml</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcoatics/controllers/servlets/LivroFotoDownloader.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/validation/Senha2Validation.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/validation/CpfValidation.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/model/Pedido.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/model/Livro.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/validation/UsuarioValidation.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/web/indexAdmin.xhtml</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/dao/ManagerDao.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/controllers/FileDownloadView.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/validation/TelefoneValidation.java</file>
+            <file>file:/C:/Users/José%20Alfredo/Videos/PaLIB/src/java/com/devcaotics/controllers/CompraLivroController.java</file>
         </group>
     </open-files>
 </project-private>

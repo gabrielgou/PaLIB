@@ -67,6 +67,7 @@ public class Pedido implements Serializable {
     }
 
     public String[] getBoleto() {
+        System.out.println(boleto);
         return boleto;
     }
 

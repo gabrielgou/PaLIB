@@ -8,6 +8,7 @@ import com.devcaotics.dao.ManagerDao;
 import com.devcaotics.model.Boleto;
 import com.devcaotics.model.BoletoResponse;
 import com.devcaotics.model.Livro;
+import com.devcaotics.model.Pagamento;
 import com.devcaotics.model.Pedido;
 import com.devcaotics.model.Usuario;
 import java.io.BufferedReader;
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -30,6 +32,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 
 /**
  *
@@ -112,13 +115,61 @@ public class PagamentoController implements Serializable {
         return "indexMeusPedidos";
     }
 
+    public String visualizarBoleto(String idVisualizacaoBoleto, String atributo) throws Exception {
+        URL url = new URL("https://api-sandbox.kobana.com.br/v1/bank_billets/?id=" + idVisualizacaoBoleto);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+
+        String token = "vlsREO7Xif4Onw3ZKKrkv9E7_cJlNMLxrIUH-GIYSzs";
+
+        connection.setRequestProperty("Authorization", "Bearer " + token);
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.connect();
+        
+        ObjectMapper objectMapper = new ObjectMapper();
+        
+        BufferedReader reader;
+        int responseCode = connection.getResponseCode();
+        if (responseCode >= HttpURLConnection.HTTP_BAD_REQUEST) {
+            reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+        } else {
+            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        }
+        
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+        reader.close();
+        
+        TypeReference<List<Map<String, Object>>> typeReference = new TypeReference<List<Map<String, Object>>>(){};
+        List<Map<String, Object>> responseList = objectMapper.readValue(response.toString(), typeReference);
+        
+        Object idBoleto = null;
+        if (!responseList.isEmpty()) {
+            Map<String, Object> primeiroObjeto = responseList.get(0);
+            idBoleto = primeiroObjeto.get(atributo);
+        }
+                
+        return idBoleto.toString();
+    }
+    
     public String verificarPagamento(Pedido pedido) throws Exception {
+        System.out.println("Entrou aq");
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String data = dateFormat.format(new Date());
 
-        String jsonInputString = "{\"paid_amount\":" + pedido.getLivro().getPreco() + ",\"paid_at\":" + data + "}"; // JSON de exemplo a ser enviado
-
-        URL url = new URL("https://api-sandbox.kobana.com.br/v1/bank_billets" + pedido.getBoleto()[1] + "/pay");
+        //Cria o body e transforma em JSON
+        Pagamento pagamento = new Pagamento();
+        pagamento.setPaid_amount(pedido.getLivro().getPreco());
+        pagamento.setPaid_at(data);        
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonBody = objectMapper.writeValueAsString(pagamento);
+                       
+        
+        URL url = new URL("https://api-sandbox.kobana.com.br/v1/bank_billets/" + visualizarBoleto(pedido.getBoleto()[1], "id") + "/pay");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("PUT");
 
@@ -129,13 +180,21 @@ public class PagamentoController implements Serializable {
         connection.setDoOutput(true);
 
         DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-        outputStream.writeBytes(jsonInputString);
-        outputStream.flush();
+        
+        
+        System.out.println("Json Body aq: " + jsonBody + " => ID: " + pedido.getBoleto()[0]);
+        
+        // Envia o corpo da requisição
+        outputStream.write(jsonBody.getBytes("UTF-8"));
+        outputStream.close();
+        
         outputStream.close();
 
         connection.connect();
 
         int responseCode = connection.getResponseCode();
+        
+        System.out.println(responseCode);
         if (responseCode >= HttpURLConnection.HTTP_BAD_REQUEST) {
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(
