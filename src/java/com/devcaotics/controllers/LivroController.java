@@ -76,9 +76,7 @@ public class LivroController implements Serializable {
                 getCurrentInstance().getExternalContext().getSession(true))).
                 getAttribute("loginController")).getUsuarioLogado();
         
-        List<Livro> livros = logado.getLivros();
-                
-        return livros;
+        return logado.getLivros();
     }
 
     public boolean existsBookFromUser(long id) {

@@ -169,7 +169,7 @@ public class PagamentoController implements Serializable {
         String jsonBody = objectMapper.writeValueAsString(pagamento);
                        
         
-        URL url = new URL("https://api-sandbox.kobana.com.br/v1/bank_billets/" + visualizarBoleto(pedido.getBoleto()[1], "id") + "/pay");
+        URL url = new URL("https://api-sandbox.kobana.com.br/v1/bank_billets/" + pedido.getBoleto()[1] + "/pay");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("PUT");
 
@@ -182,7 +182,7 @@ public class PagamentoController implements Serializable {
         DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
         
         
-        System.out.println("Json Body aq: " + jsonBody + " => ID: " + pedido.getBoleto()[0]);
+        System.out.println("Json Body aq: " + jsonBody + " => ID: " + pedido.getBoleto()[1]);
         
         // Envia o corpo da requisição
         outputStream.write(jsonBody.getBytes("UTF-8"));
@@ -205,6 +205,15 @@ public class PagamentoController implements Serializable {
         } else {
             
             // TEM QUE COLOCAR O LIVRO DENTRO DA LISTA DE LIVROS DO USUÁRIO DE DAR UPDATE!!!!!!!
+            pedido.setPago(true);
+            ManagerDao.getCurrentInstance().update(pedido);
+            
+            Usuario logado = ((LoginController) ((HttpSession) (FacesContext.
+                getCurrentInstance().getExternalContext().getSession(true))).
+                getAttribute("loginController")).getUsuarioLogado();
+            
+            logado.getLivros().add(pedido.getLivro());
+            ManagerDao.getCurrentInstance().update(logado);
             
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(

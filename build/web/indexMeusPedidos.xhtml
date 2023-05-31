@@ -46,7 +46,7 @@
                             <h:outputText value="R$ ${item.livro.preco}"/><br/>
                         </div>
                         <b:button value="Visualizar boleto" look="primary" href="#{item.boleto[0]}" style="visibility: #{item.pago ?'hidden':'visible'} " target="_blank"/>
-                        <p:commandButton value="Confirmar Pagamento" style="font-size: 1.3rem; padding: 0.35rem; font-size: 1.4rem; margin-top: 0.5rem" action="${pagamentoController.verificarPagamento(item)}" />
+                        <p:commandButton value="Confirmar Pagamento" style="font-size: 1.3rem; padding: 0.35rem; font-size: 1.4rem; margin-top: 0.5rem; visibility: #{item.pago ?'hidden':'visible'}" action="${pagamentoController.verificarPagamento(item)}" />
                     </div>
                 </p:card>
             </c:forEach>
