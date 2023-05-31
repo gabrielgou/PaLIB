@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>web/indexLivro.xhtml</url>
+            <bookmark id="2">
+                <name/>
+                <line>10</line>
+                <key/>
+            </bookmark>
+        </file>
         <file>
             <url>src/java/com/devcaotics/controllers/UsuarioController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>93</line>
+                <line>94</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rapha/OneDrive/FACULDADE/Projeto-JSf/PaLIB/src/java/com/devcaotics/model/BoletoResponse.java</file>
-            <file>file:/C:/Users/rapha/OneDrive/FACULDADE/Projeto-JSf/PaLIB/src/java/com/devcaotics/controllers/CompraLivroController.java</file>
-            <file>file:/C:/Users/rapha/OneDrive/FACULDADE/Projeto-JSf/PaLIB/web/indexCompra.xhtml</file>
-            <file>file:/C:/Users/rapha/OneDrive/FACULDADE/Projeto-JSf/PaLIB/src/java/com/devcaotics/controllers/PagamentoController.java</file>
-            <file>file:/C:/Users/rapha/OneDrive/FACULDADE/Projeto-JSf/PaLIB/src/java/com/devcaotics/controllers/LivroController.java</file>
+            <file>file:/home/angelomig/Documents/Faculdade/PaLIB/web/indexMeusPedidos.xhtml</file>
+            <file>file:/home/angelomig/Documents/Faculdade/PaLIB/src/java/com/devcaotics/controllers/PagamentoController.java</file>
         </group>
     </open-files>
 </project-private>

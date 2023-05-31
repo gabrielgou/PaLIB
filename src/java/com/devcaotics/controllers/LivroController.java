@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package com.devcaotics.controllers;
+
 import com.devcaotics.dao.ManagerDao;
 import com.devcaotics.model.Livro;
+import com.devcaotics.model.Pedido;
 import com.devcaotics.model.Usuario;
 import java.io.Serializable;
 import java.util.List;
@@ -24,73 +26,89 @@ import org.primefaces.event.FileUploadEvent;
 @ManagedBean(name = "livroController")
 @SessionScoped
 public class LivroController implements Serializable {
+
     private Livro livro;
     private Livro selLivro;
     private byte[] binaryPhoto;
     private byte[] binaryPDF;
-     @PostConstruct
-    public void init()
-    {
+
+    @PostConstruct
+    public void init() {
         this.livro = new Livro();
     }
-    public String cadastrar()
-    {
-        if(livro.getNome()==null)
-        {
-             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro!","Livro sem nome!"));
-             return null;
+
+    public String cadastrar() {
+        if (livro.getNome() == null) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Livro sem nome!"));
+            return null;
         }
         livro.setCapa(binaryPhoto);
         livro.setPDF(binaryPDF);
         ManagerDao.getCurrentInstance().insert(this.livro);
         livro = new Livro();
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO,"Sucesso!","Livro cadastrado com sucesso!"));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Livro cadastrado com sucesso!"));
         return "indexLivro";
-              
+
     }
-    public void handleFotoLivro(FileUploadEvent event){
-        this.binaryPhoto = (event.getFile().getContent());        
+
+    public void handleFotoLivro(FileUploadEvent event) {
+        this.binaryPhoto = (event.getFile().getContent());
         FacesContext.getCurrentInstance().addMessage("formCadLivro:fotoUploader", new FacesMessage("Foto inserida com sucesso"));
     }
-    public void handlePDFLivro(FileUploadEvent event){
-        this.binaryPDF = (event.getFile().getContent());        
+
+    public void handlePDFLivro(FileUploadEvent event) {
+        this.binaryPDF = (event.getFile().getContent());
         FacesContext.getCurrentInstance().addMessage("formCadLivro:pdfUploader", new FacesMessage("Upload de PDF com sucesso"));
     }
-    
-    public List<Livro> readAll(){
-        
+
+    public List<Livro> readAll() {
+
         List<Livro> livros = ManagerDao.getCurrentInstance()
-                .read("select l from Livro l", 
+                .read("select l from Livro l",
                         Livro.class);
         return livros;
     }
-     public boolean existsBookFromUser(long id){
-        Usuario logado = ((LoginController)((HttpSession)(FacesContext.
+
+    public List<Livro> readAllFromUser() {
+        Usuario logado = ((LoginController) ((HttpSession) (FacesContext.
                 getCurrentInstance().getExternalContext().getSession(true))).
                 getAttribute("loginController")).getUsuarioLogado();
-        List<Usuario> user =  ManagerDao.getCurrentInstance()
-                .read("select u from Usuario u JOIN u.livros l where l.id="+id+" and u.id="+logado.getId(), 
+        
+        List<Livro> livros = logado.getLivros();
+                
+        return livros;
+    }
+
+    public boolean existsBookFromUser(long id) {
+        Usuario logado = ((LoginController) ((HttpSession) (FacesContext.
+                getCurrentInstance().getExternalContext().getSession(true))).
+                getAttribute("loginController")).getUsuarioLogado();
+        List<Usuario> user = ManagerDao.getCurrentInstance()
+                .read("select u from Usuario u JOIN u.livros l where l.id=" + id + " and u.id=" + logado.getId(),
                         Usuario.class);
-        return user.isEmpty()==false?false:true;
+        return user.isEmpty() == false ? false : true;
     }
-    public void clearSelection(){
-        
+
+    public void clearSelection() {
+
         this.selLivro = null;
-       
+
     }
-    public void alterar(){
-        
+
+    public void alterar() {
+
         ManagerDao.getCurrentInstance().update(this.selLivro);
-        
+
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Livro alterado com sucesso!"));
-                
+
     }
-    public void deletar(){
+
+    public void deletar() {
         ManagerDao.getCurrentInstance().delete(this.selLivro);
-    
+
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Livro deletado com sucesso!"));
     }
@@ -126,7 +144,5 @@ public class LivroController implements Serializable {
     public void setBinaryPDF(byte[] binaryPDF) {
         this.binaryPDF = binaryPDF;
     }
-    
-    
-    
+
 }

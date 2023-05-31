@@ -50,6 +50,7 @@ public class UsuarioController implements Serializable {
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro Ao fazer Cadastro","Senha Não Confere"));
              return;
         }
+        ManagerDao.getCurrentInstance().insert(this.user);
         this.user = new Usuario();
         
         FacesContext.getCurrentInstance().addMessage(null,
