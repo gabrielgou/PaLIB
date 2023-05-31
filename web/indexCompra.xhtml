@@ -46,7 +46,7 @@
                                 <p:commandButton value="Comprar" oncomplete="PF('widDialogAdicionarCarrinho').show()"
                                          update=':dialogAdicionarCarrinho' 
                                          action="${pagamentoController.realizarPagamento(compraLivroController.selLivro, 
-                                                            compraLivroController.usuarioLogado)}"> 
+                                                   compraLivroController.usuarioLogado)}" style="visibility: #{livroController.existsBookFromUser(item.id) eq true?'visible':'hidden'} "> 
                                     <f:setPropertyActionListener value="${item}" target="${compraLivroController.selLivro}"/>
                                 </p:commandButton>
 
