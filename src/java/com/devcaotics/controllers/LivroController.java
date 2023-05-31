@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import org.primefaces.event.FileUploadEvent;
 
 /**
@@ -64,6 +65,15 @@ public class LivroController implements Serializable {
                 .read("select l from Livro l", 
                         Livro.class);
         return livros;
+    }
+     public boolean existsBookFromUser(long id){
+        Usuario logado = ((LoginController)((HttpSession)(FacesContext.
+                getCurrentInstance().getExternalContext().getSession(true))).
+                getAttribute("loginController")).getUsuarioLogado();
+        List<Usuario> user =  ManagerDao.getCurrentInstance()
+                .read("select u from Usuario u JOIN u.livros l where l.id="+id+" and u.id="+logado.getId(), 
+                        Usuario.class);
+        return user.isEmpty()==false?false:true;
     }
     public void clearSelection(){
         
