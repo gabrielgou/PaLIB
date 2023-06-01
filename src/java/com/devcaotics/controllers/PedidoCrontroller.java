@@ -54,6 +54,8 @@ public class PedidoCrontroller implements Serializable {
                 {
                     p.setPago(true);
                     ManagerDao.getCurrentInstance().update(p);
+                    logado.getLivros().add(p.getLivro());
+                    ManagerDao.getCurrentInstance().update(logado);
                 }
             }
         }
@@ -74,6 +76,7 @@ public class PedidoCrontroller implements Serializable {
                 {
                     p.setPago(true);
                     ManagerDao.getCurrentInstance().update(p);
+                    
                 }
             }
     }

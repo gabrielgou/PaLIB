@@ -25,7 +25,7 @@
             </div>
         </b:jumbotron>
         
-        <b:form id="formCards" class="ListaPedidos" style="width: 100%; display: flex;">
+        <b:form id="formCards" class="ListaPedidos" style="width: 100%; display: flex; flex-wrap: wrap">
             <b:dataTable value="#{pedidoController.readFromUser()}" var="item" ajax="true" style="width: 100%">
                 <b:dataTableColumn label="ID" >
                     <h:outputText value="ID do Pedido: #{item.id}"/>
