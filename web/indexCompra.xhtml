@@ -45,12 +45,7 @@
                             <h:outputText value="Preço: "/>
                             <h:outputText value="R$ ${item.preco}"/><br/>
                         </div>
-    <!--                    <b:commandButton value="Adicionar Carrinho" action="#{compraLivroController.fazerCompra()}">
-                            <f:setPropertyActionListener value="#{item}" 
-                                                         target="#{compraLivroController.selLivro}"/> -->
-
-
-                        <div style="display: flex; gap: 1rem;">
+                         <div style="display: flex; gap: 1rem;">
                             <p:commandButton style="font-size: 1.5rem" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
                                              icon="pi pi-arrow-down" styleClass="mr-2" disabled="#{livroController.existsBookFromUser(item.id) eq false?'false':'true'}">
                                 <p:fileDownload  value="#{FileDownload.getFile(item.id)}"/>
