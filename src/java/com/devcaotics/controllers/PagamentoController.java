@@ -142,7 +142,6 @@ public class PagamentoController implements Serializable {
             response.append(line);
         }
         reader.close();
-        
         TypeReference<List<Map<String, Object>>> typeReference = new TypeReference<List<Map<String, Object>>>(){};
         List<Map<String, Object>> responseList = objectMapper.readValue(response.toString(), typeReference);
         

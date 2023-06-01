@@ -25,31 +25,37 @@
             </div>
         </b:jumbotron>
         
-        <b:form id="formCards" class="ListaPedidos" style="display: flex; flex-wrap: wrap">
-            <c:forEach items="#{pedidoController.readFromUser()}"
-                       var="item" varStatus="i"> 
-                <p:card style="width: 23rem; margin-bottom: 5px; margin-left: 2em" class="CardLivro">
-                    <f:facet name="header" class="IDPedido"><h3 style="margin-left: 2rem">ID do Pedido: #{item.id}</h3></f:facet>
-                    <div style="margin-left: 0.6rem; font-size: 1.5rem">
-                        <b><h:outputText value="${item.pago?'Pagamento Realizado':'Aguardando Pagamento'}"/></b>
-                        <img src="LivroFotoDownloader?idLivro=#{item.livro.id}"
-                             style="width: 20rem; border-radius: 0.5rem; margin-top: 1rem" />
-                    </div>
-                    <br/>
-                    <div style="margin-left: 0.6rem;">
-                        <div style="font-size: 1.5rem; margin: 1rem 0 1rem 0">
-                            <h:outputText value="Nome: "/>
-                            <h:outputText value="${item.livro.nome}"/><br/>
-                            <h:outputText value="Autor: "/>
-                            <h:outputText value="${item.livro.autor}"/><br/>
-                            <h:outputText value="Preço: "/>
-                            <h:outputText value="R$ ${item.livro.preco}"/><br/>
+        <b:form id="formCards" class="ListaPedidos" style="width: 100%; display: flex;">
+            <b:dataTable value="#{pedidoController.readFromUser()}" var="item" ajax="true" style="width: 100%">
+                <b:dataTableColumn label="ID" >
+                    <h:outputText value="ID do Pedido: #{item.id}"/>
+                </b:dataTableColumn>
+                <b:dataTableColumn label="Livros">
+                    <p:card style="width: 23rem; margin-bottom: 5px; margin-left: 2em" class="CardLivro">
+                        <f:facet name="header" class="IDPedido"><h3 style="margin-left: 2rem">ID do Pedido: #{item.id}</h3></f:facet>
+                        <div style="margin-left: 0.6rem; font-size: 1.5rem">
+                            <b><h:outputText id="labelPago" value="${item.pago?'Pagamento Realizado':'Aguardando Pagamento'}">
+                                </h:outputText></b>
+                            <img src="LivroFotoDownloader?idLivro=#{item.livro.id}"
+                                 style="width: 20rem; border-radius: 0.5rem; margin-top: 1rem" />
                         </div>
-                        <b:button value="Visualizar boleto" look="primary" href="#{item.boleto[0]}" style="visibility: #{item.pago ?'hidden':'visible'} " target="_blank"/>
-                        <p:commandButton value="Confirmar Pagamento" style="font-size: 1.3rem; padding: 0.35rem; font-size: 1.4rem; margin-top: 0.5rem; visibility: #{item.pago ?'hidden':'visible'}" action="${pagamentoController.verificarPagamento(item)}" />
-                    </div>
-                </p:card>
-            </c:forEach>
+                        <br/>
+                        <div style="margin-left: 0.6rem;">
+                            <div style="font-size: 1.5rem; margin: 1rem 0 1rem 0">
+                                <h:outputText value="Nome: "/>
+                                <h:outputText value="${item.livro.nome}"/><br/>
+                                <h:outputText value="Autor: "/>
+                                <h:outputText value="${item.livro.autor}"/><br/>
+                                <h:outputText value="Preço: "/>
+                                <h:outputText value="R$ ${item.livro.preco}"/><br/>
+                            </div>
+                            <b:button value="Visualizar boleto" look="primary" href="#{item.boleto[0]}" style="visibility: #{item.pago ?'hidden':'visible'} " target="_blank"/>
+                            <p:commandButton value="Confirmar Pagamento" style="font-size: 1.3rem; padding: 0.35rem; font-size: 1.4rem; margin-top: 0.5rem; visibility: #{item.pago ?'hidden':'visible'}" action="${pagamentoController.verificarPagamento(item)}" />
+                        </div>
+                    </p:card>
+                </b:dataTableColumn>
+                
+            </b:dataTable>>
         </b:form>
     </h:body>
 </html>
