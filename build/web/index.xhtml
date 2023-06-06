@@ -26,8 +26,10 @@
 
             <b:form id="formLogin">
                 <b:panelGrid columns="1">
+
                     <h:outputText value="CPF:"/>
                     <b:inputText value="#{login}" placeholder="Número do CPF"/>
+
 
                     <h:outputText value="Senha:"/>
                     <b:inputSecret value="#{senha}" placeholder="Senha"/>
@@ -64,17 +66,18 @@
                     
                     <h:outputText value="Telefone"/>
                     <b:inputText id="telefoneValidator" value="#{usuarioController.user.telefone}" validator="telefoneValidator" 
-                                 required="true" placeholder="81999999999" validator-message="Celular Inválido">
-                        <p:ajax event="change" update="@form"/>
+                                 required="true" placeholder="81999999999" validatorMessage="Celular Inválido" type="number"
+                                 >
+                        <p:ajax event="change" update="@form"/> 
                     </b:inputText>
-                    <h:message for="telefoneValidator" style="color:red"/>
-                
-                
+                    <h:message for="telefoneValidator" style="color:red"/>               
                     <h:outputText value="CEP"/>
-                    <b:inputText value="#{usuarioController.cep}">
-                        <p:ajax event="change" process="@this"/>
+                    <b:inputText id="cepValidator" value="#{usuarioController.cep}" validator="cepValidator" validator-message="CEP Incorreto"
+                                 type="number">
+                        <p:ajax event="change" process="@this" update="@form:labelCEP"/>
                     </b:inputText>
-                    <b:commandButton value="Preencher CEP" action="#{usuarioController.getPreencherCEP}"> 
+                    <h:message id="labelCEP" for="cepValidator" style="color:red"/>
+                    <b:commandButton value="Preencher CEP"  action="#{usuarioController.getPreencherCEP}"> 
                         <p:ajax event="click" update="@form"/>
                     </b:commandButton>
                 </p:panelGrid>

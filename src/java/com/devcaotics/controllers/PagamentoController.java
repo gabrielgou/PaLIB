@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Scanner;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -38,7 +39,9 @@ import org.codehaus.jackson.type.TypeReference;
  *
  * @author rapha
  */
+
 @ManagedBean(name = "pagamentoController")
+
 @SessionScoped
 public class PagamentoController implements Serializable {
 
