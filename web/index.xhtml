@@ -7,44 +7,40 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Login Do Sistema PaLib</title>
+        <title>PaLib - Login</title>
     </h:head>
     <h:body>
 
         <b:growl delay="4000" show-summary="true" show-detail="true"/>
 
-        <b:jumbotron>
-            Login: PALib
+        <b:jumbotron style="text-align: center">
+            <h1>PaLib</h1>
         </b:jumbotron>
 
         <p:dialog draggable="false" resizable="false" visible="true"
                   closable="false" closeOnEscape="false" modal="false">
 
             <f:facet name="header">
-                Logar no PALib
+                Logar no PaLib
             </f:facet>
 
             <b:form id="formLogin">
                 <b:panelGrid columns="1">
-                    <h:outputText value="login:"/>
-                    <b:inputText value="#{login}" placeholder="CPF"/>
+                  
+                    <h:outputText value="CPF:"/>
+                    <b:inputText value="#{login}" placeholder="Número do CPF"/>
 
-                    <h:outputText value="senha:"/>
+
+                    <h:outputText value="Senha:"/>
                     <b:inputSecret value="#{senha}" placeholder="Senha"/>
                 </b:panelGrid>
-                <p:panel>
-                    <h5>registre-se</h5>
-                    <b:link value="Cadastre-se" onclick="$('#modalCadUsuario').modal('show')"/>
+                <p:panel style="margin-bottom: 10px">
+                    <h5>Ainda não está cadastrado no nosso sistema?</h5>
+                    <b:link style="font-size: 18px" value="Cadastre-se" onclick="$('#modalCadUsuario').modal('show')"/>
                 </p:panel>
-                <b:commandButton value="logar" style="float: right"
+                <b:commandButton value="Entrar" style="float: right"
                                  style-class="btn btn-primary"
                                  action="#{loginController.logar(login, senha)}"/>
-            </b:form>
-            
-            <b:form id="formPagamento">
-                <b:commandButton value="realizarPagamaneto" style="float: right"
-                                 style-class="btn btn-primary"
-                                 action="#{pagamentoController.realizarPagamento()}"/>
             </b:form>
         </p:dialog>
 
@@ -54,16 +50,16 @@
             <b:form id="formCadUsuario">
                 <p:panelGrid columns="3" layout="grid">
                     
-                    <h:outputText value="Nome"/>
+                    <h:outputText value="Nome completo"/>
                     <b:inputText id="nameValidator" validator="nameValidator" validatorMessage="Preencha corretamente o campo de nome." 
-                                 value="#{usuarioController.user.nome}" required="true" >
+                                 placeholder="Fulano da Silva" value="#{usuarioController.user.nome}" required="true" >
                         <p:ajax event="change" update="@form"/>
                     </b:inputText>
                     <h:message for="nameValidator" style="color:red"/>
                     
                     <h:outputText value="CPF"/>
                     <b:inputText id="cpfValidator" validator="CPFValidator" validator-message="CPF Invalido!" value="#{usuarioController.user.cpf}"
-                                 required="true">
+                                 placeholder="26811771038" required="true">
                         <p:ajax event="change" update="@form"/>
                     </b:inputText>
                     <h:message for="cpfValidator" style="color:red"/>
@@ -95,7 +91,7 @@
 
                         <h:outputText value="Numero"/>
                         <p:inputNumber value="#{usuarioController.user.endereco.numero}" decimalPlaces="0" required="true"
-                                       requiredMessage="Preencha o numero da casa" minValue="0"/>
+                                       requiredMessage="Preencha o número da casa" minValue="0"/>
 
                         <h:outputText value="Cidade"/>
                         <h:outputText value="#{usuarioController.user.endereco.cidade}"/>
@@ -104,20 +100,19 @@
                 <p:panelGrid columns="3" layout="grid">
                     <h:outputText value="Senha"/>
                     <b:inputSecret id="senhaValidator" value="#{usuarioController.user.senha}" validator="senhaValidator" validator-message="Senha Fraca!"
-                                   required="true" required-message="Preencha a Senha" >
+                                   required="true" required-message="Preencha a senha" tooltip="A senha deve conter ao menos um de cada tipo de caracteres a seguir: maiúsculo, minúsculo, especial e digito numérico" >
                         <p:ajax event="keyup" process="@this" update="@form:labelSenha"/>
                     </b:inputSecret>
                     <h:message id="labelSenha" for="senhaValidator" style="color: red"/>
                     
                     <h:outputText value="Confirmar Senha"/>
-                    <b:inputSecret id="senha2Validator" validator="senha2Validator" validatorMessage="Senhas não conferem"
-                                   value="#{senha}" required="true">
+                    <b:inputSecret id="senha2Validator" validator="senha2Validator" validatorMessage="As senhas não conferem"
+                                   value="#{senha}" required="true" tooltip="Repita a senha que foi inserida acima">
                         <p:ajax event="change" update="@form:labelSenha2"/>
                     </b:inputSecret>
                     <h:message id="labelSenha2"  for="senha2Validator" style="color: red"/>
-                    <b:label value="A senha deve conter 1 letra maiúscula, 1 minúscula, 1 caractere especial e 1 digito numérico"/>
                 </p:panelGrid>
-                <b:commandButton value="registrar" action="#{usuarioController.inserir(senha)}"/>
+                <b:commandButton value="Registrar" action="#{usuarioController.inserir(senha)}"/>
             
             </b:form>
 

@@ -6,6 +6,7 @@
 package com.devcaotics.controllers;
 
 import com.devcaotics.dao.ManagerDao;
+import com.devcaotics.model.Livro;
 import com.devcaotics.model.Usuario;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class UsuarioController implements Serializable {
              return;
         }
         ManagerDao.getCurrentInstance().insert(this.user);
-         this.user = new Usuario();
+        this.user = new Usuario();
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO,"Sucesso!","Usuario cadastrado com sucesso!"));

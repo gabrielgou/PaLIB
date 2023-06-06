@@ -123,7 +123,7 @@ public class Boleto {
         this.customer_neighborhood = customer_neighborhood;
     }
 
-   
+    public Boleto() {}
     
 
     public Double getAmount() {

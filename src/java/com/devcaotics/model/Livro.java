@@ -5,6 +5,7 @@
  */
 package com.devcaotics.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -21,7 +22,7 @@ import javax.persistence.ManyToMany;
  * @author gabri
  */
 @Entity
-public class Livro {
+public class Livro implements Serializable {
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
