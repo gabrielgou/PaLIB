@@ -41,7 +41,6 @@ import org.codehaus.jackson.type.TypeReference;
  */
 
 @ManagedBean(name = "pagamentoController")
-
 @SessionScoped
 public class PagamentoController implements Serializable {
 

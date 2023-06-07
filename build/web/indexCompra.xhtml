@@ -79,7 +79,7 @@
                     <h4>Deseja fazer o pedido?</h4>
                     <div style="display: flex; gap: 1rem; margin-top: 2rem">
                         <p:commandButton value="Não" style="font-size: 1.3rem" onclick="PF('widDialogAdicionarCarrinho').hide()" />
-                        <p:commandButton value="Sim" style="font-size: 1.3rem" action="${pagamentoController.fazerPedido(compraLivroController.selLivro, compraLivroController.usuarioLogado)}" update=':dialogAdicionarCarrinho' />
+                        <p:commandButton value="Sim" style="font-size: 1.3rem" action="${pagamentoController.fazerPedido(compraLivroController.selLivro, loginController.usuarioLogado)}" update=':dialogAdicionarCarrinho' />
                     </div>
                 </b:form>
             </div>
