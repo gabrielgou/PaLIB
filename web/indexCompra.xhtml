@@ -71,55 +71,6 @@
                 </p:column>
                 
             </p:dataTable>
-            <!--<c:forEach items="#{livroController.readAll()}"
-                       var="item" varStatus="i"> 
-                <p:row>
-                    <p:fieldset legend="#{item.nome}" style="margin-bottom:20px">
-                        <h:panelGrid columns="3" cellpadding="5">
-                            <p:graphicImage value="LivroFotoDownloader?idLivro=#{item.id}" style="width: 20rem; border-radius: 0.5rem"/>
-                            <h:panelGrid columns="2" cellpadding="5" cellspacing="5">
-                                <h:outputText value="Autor: "/>
-                                <h:outputText value="${item.autor}"/>
-                                <h:outputText value="Preço: "/>
-                                <h:outputText value="R$ ${item.preco}"/>
-                            </h:panelGrid>
-                            <h:outputText
-                                value="#{item.sinopse}" />
-                            </h:panelGrid>
-                    </p:fieldset>
-                </p:row>
-                
-                <p:card style="width: 23rem; margin-bottom: 5px; margin-left: 2em" class="CardLivro">
-                    <f:facet name="header" class="TituloLivro"><h3 style="padding: 2rem 0 0 1.6rem; margin: 0">#{item.nome}</h3></f:facet>
-                    <div style="display: flex; justify-content: center; margin: 0; padding: 0">
-                        <img src="LivroFotoDownloader?idLivro=#{item.id}"
-                             style="width: 20rem; border-radius: 0.5rem" />
-                    </div>
-                    <br/>
-                    <div style="margin-left: 0.6rem;">
-                        <div style="font-size: 1.5rem; margin: 1rem 0 1rem 0">
-                            <h:outputText value="Autor: "/>
-                            <h:outputText value="${item.autor}"/><br/>
-                            <h:outputText value="Sinopse: "/>
-                            <h:outputText value="${item.sinopse}"/><br/>
-                            <h:outputText value="Preço: "/>
-                            <h:outputText value="R$ ${item.preco}"/><br/>
-                        </div>
-                         <div style="display: flex; gap: 1rem;">
-                            <p:commandButton style="font-size: 1.5rem" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
-                                             icon="pi pi-arrow-down" styleClass="mr-2" disabled="#{livroController.existsBookFromUser(item.id) eq false?'false':'true'}">
-                                <p:fileDownload  value="#{FileDownload.getFile(item.id)}"/>
-                            </p:commandButton>
-
-                            <p:commandButton value="Comprar" oncomplete="PF('widDialogAdicionarCarrinho').show()"
-                                             update=':dialogAdicionarCarrinho' 
-                                             style="font-size: 1.5rem; visibility: #{livroController.existsBookFromUser(item.id) eq true ?'visible':'hidden'} "> 
-                                <f:setPropertyActionListener value="${item}" target="${compraLivroController.selLivro}"/>
-                            </p:commandButton>
-                        </div>
-                    </div>
-                </p:card>
-            </c:forEach>-->
         </b:form>
 
         <p:dialog id="dialogAdicionarCarrinho" resizable="false" responsive="true" draggable="false" modal='true' widgetVar='widDialogAdicionarCarrinho'
