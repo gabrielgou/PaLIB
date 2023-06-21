@@ -49,6 +49,8 @@
                                     <h:outputText value="${item.autor}"/>
                                     <h:outputText value="Preço: "/>
                                     <h:outputText value="R$ ${item.preco}"/>
+                                    <h:outputText value="Avaliação" />
+                                    <p:rating value="#{item.mediaRating()}" readonly="true"/>
                                 </h:panelGrid>
                                 <h:outputText
                                     value="#{item.sinopse}" />

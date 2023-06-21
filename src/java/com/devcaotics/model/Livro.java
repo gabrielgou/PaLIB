@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -38,6 +39,11 @@ public class Livro implements Serializable {
     private byte[] pdf;
     @Lob
     private byte[] capa;
+    
+    @OneToMany
+    private List<Avaliacao> avaliacao;
+    
+    
     public Livro() {
         this.tags = new ArrayList<>();
     }
@@ -117,5 +123,23 @@ public class Livro implements Serializable {
     public void setPreco(double preco) {
         this.preco = preco;
     }
-        
+
+    public List<Avaliacao> getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(List<Avaliacao> avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+    
+    public Integer mediaRating()
+    {
+        Integer media=0;
+        Integer count=0;
+        for(Avaliacao av : this.avaliacao)
+        {
+            media+=av.getRating();
+        }
+        return count!=0?media/count:null;
+    }
 }

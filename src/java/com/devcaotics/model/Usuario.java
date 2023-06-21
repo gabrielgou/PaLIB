@@ -38,6 +38,9 @@ public class Usuario implements Serializable {
     private Endereco endereco;
     @OneToMany
     private List<Livro> livros;
+    @OneToMany
+    private List<Avaliacao> avaliacao;
+    
     public Usuario()
     {
         this.endereco = new Endereco();
@@ -105,6 +108,12 @@ public class Usuario implements Serializable {
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
     }
-    
-    
+
+    public List<Avaliacao> getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(List<Avaliacao> avaliacao) {
+        this.avaliacao = avaliacao;
+    }    
 }
