@@ -10,7 +10,9 @@ import com.devcaotics.model.Livro;
 import com.devcaotics.model.Pedido;
 import com.devcaotics.model.Usuario;
 import java.io.Serializable;
+import static java.lang.Integer.getInteger;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -31,7 +33,7 @@ public class LivroController implements Serializable {
     private Livro selLivro;
     private byte[] binaryPhoto;
     private byte[] binaryPDF;
-
+    private List<Livro> livrosFiltrados;
     @PostConstruct
     public void init() {
         this.livro = new Livro();
@@ -88,6 +90,17 @@ public class LivroController implements Serializable {
                         Usuario.class);
         return user.isEmpty() == false ? false : true;
     }
+    public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
+        if (filterText == null || filterText.equals("")) {
+            return true;
+        } 
+        Livro l = (Livro) value;
+        return l.getAutor().toLowerCase().contains(filterText)||
+                l.getCategoria().toLowerCase().contains(filterText) ||
+                l.getNome().toLowerCase().contains(filterText) ||
+                l.getSinopse().toLowerCase().contains(filterText);
+    }
 
     public void clearSelection() {
 
@@ -143,4 +156,12 @@ public class LivroController implements Serializable {
         this.binaryPDF = binaryPDF;
     }
 
+    public List<Livro> getLivrosFiltrados() {
+        return livrosFiltrados;
+    }
+
+    public void setLivrosFiltrados(List<Livro> livrosFiltrados) {
+        this.livrosFiltrados = livrosFiltrados;
+    }
+    
 }
