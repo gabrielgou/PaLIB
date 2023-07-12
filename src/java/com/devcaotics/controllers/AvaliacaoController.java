@@ -39,6 +39,7 @@ public class AvaliacaoController implements Serializable {
     }
     public void onrate(RateEvent<Integer> rateEvent) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Avaliação: ", "Você avaliou em:" + rateEvent.getRating()+" estrelas");
+        this.rating = rateEvent.getRating();
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     public void cadastrar(long idLivro) {
@@ -70,11 +71,21 @@ public class AvaliacaoController implements Serializable {
                 getCurrentInstance().getExternalContext().getSession(true))).
                 getAttribute("loginController")).getUsuarioLogado();
         List<Avaliacao> av = ManagerDao.getCurrentInstance()
-                .read("select a from Avaliacao a where a.usuario.nome="+logado.getNome()+" and a.livro.id="+idLivro,
+                .read("select a from Avaliacao a where a.user.id="+logado.getId()+" and a.livro.id="+idLivro,
                         Avaliacao.class);
         if(av==null)
             return 0;
-        return 0;
+        return av.get(0).getRating();
+    }
+    public boolean foiAvaliado(long idLivro)
+    {
+        Usuario logado = ((LoginController) ((HttpSession) (FacesContext.
+                getCurrentInstance().getExternalContext().getSession(true))).
+                getAttribute("loginController")).getUsuarioLogado();
+        List<Avaliacao> av = ManagerDao.getCurrentInstance()
+                .read("select a from Avaliacao a where a.user.id="+logado.getId()+" and a.livro.id="+idLivro,
+                        Avaliacao.class);
+        return av!=null;
     }
     public int readAllFromLivro(int idLivro) {
         Usuario logado = ((LoginController) ((HttpSession) (FacesContext.
