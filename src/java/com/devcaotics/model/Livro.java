@@ -141,6 +141,6 @@ public class Livro implements Serializable {
             media+=av.getRating();
             count++;
         }
-        return count!=0?media/count:null;
+        return count!=0?media/count:0;
     }
 }
