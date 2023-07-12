@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -23,8 +24,8 @@
                     <b:navCommandLink style="color:white" value="Meus Livros" href="indexMeusLivros.xhtml"/>
                     <b:navCommandLink style="color:white" value="Meus Pedidos" href="indexMeusPedidos.xhtml"/>
                     <b:dropMenu style="color:white;" value="Cliente: #{(loginController.usuarioLogado ne null)?loginController.usuarioLogado.nome:''}">
-                        <b:navLink value="Meu Perfil" href="#"/>
-                        <b:navLink value="Mudar Senha" href="#"/>
+                        <ui:remove><b:navLink value="Meu Perfil" href="#"/>
+                            <b:navLink value="Mudar Senha" href="#"/></ui:remove>
                         <b:navCommandLink ajax="false" value="Sair" href='index.xhtml'  action="#{loginController.logout()}"/>
                     </b:dropMenu>                    
                 </b:navbarLinks>

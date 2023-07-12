@@ -16,7 +16,9 @@
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/index.xhtml</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Pedido.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/LoginController.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Pagamento.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/UsuarioController.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Endereco.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Avaliacao.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Usuario.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/CompraLivroController.java</file>
@@ -29,14 +31,19 @@
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/LivroController.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/PedidoCrontroller.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/test/test/UsuarioTest.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Boleto.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/PagamentoController.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexMeusPedidos.xhtml</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Formats.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Livro.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexLivro.xhtml</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/test/test/LivroTest.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/FileDownloadView.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcoatics/controllers/servlets/LivroFotoDownloader.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/test/test/PedidoTest.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/AvaliacaoController.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/test/test/EnderecoTest.java</file>
         </group>
     </open-files>
 </project-private>
