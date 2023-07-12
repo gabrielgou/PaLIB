@@ -42,14 +42,17 @@
                                              icon="pi pi-arrow-down" styleClass="mr-2" disabled="#{livroController.existsBookFromUser(item.id) eq false?'false':'true'}">
                                 <p:fileDownload  value="#{FileDownload.getFile(item.id)}"/>
                             </p:commandButton>
-                            <p:rating value="#{avaliacaoController.readRatingFromUser(item.livro.id)}"
-                                      disabled="#{avaliacaoController.foiAvaliado(item.livro.id)}">
-                                <p:ajax event="rate" listener="#{avaliacaoController.onrate}"/>
+                            <p:rating value="#{avaliacaoController.rating}"
+                                      style="visibility: #{avaliacaoController.foiAvaliado(item.livro.id)?'hidden':'visible'}">
+                                <p:ajax event="rate" listener="#{avaliacaoController.onrate}" process="@this"
+                                        update="@form"/>
                             </p:rating>
                             <p:commandButton icon="glyphicon glyphicon-ok" ajax="true" action="#{avaliacaoController.cadastrar(item.livro.id)}" 
-                                             style="visibility: #{avaliacaoController.foiAvaliado(item.livro.id)?'hidden':'vsisible'}">
-                                <p:confirm message="Deseja cadastrar a avaliação de #{avaliacaoController.rating} estrelas?"/>
+                                             style="visibility: #{avaliacaoController.foiAvaliado(item.livro.id)?'hidden':'visible'}">
+                                <p:confirm message="Deseja cadastrar a avaliação?"/>
                             </p:commandButton>
+                            <h:outputText value="Sua avaliação: #{avaliacaoController.readRatingFromUser(item.livro.id)}"
+                                          style="visibility: #{avaliacaoController.foiAvaliado(item.livro.id)?'visible':'hidden'}"/>
                         </div>
                     </p:card>
                 </b:dataTableColumn>
