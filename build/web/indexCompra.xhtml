@@ -38,8 +38,8 @@
                         <p:inputText id="globalFilter" onkeyup="PF('livrosTable').filter()" style="width:150px" placeholder="Digite sua busca"/>
                     </p:outputPanel>
                 </f:facet>
-                <p:column>
-                    
+                <p:ajax event="sort" skipChildren="false"/>
+                <p:column headerText="Ordenar por avaliação" sortBy="#{item.floatRating()}">                    
                         <p:fieldset legend="#{item.nome}" style="margin-bottom:20px">
                             <h:panelGrid columns="4" cellpadding="5" border="0" >
                                 <p:graphicImage value="LivroFotoDownloader?idLivro=#{item.id}"
