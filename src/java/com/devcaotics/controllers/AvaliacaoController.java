@@ -73,7 +73,7 @@ public class AvaliacaoController implements Serializable {
         List<Avaliacao> av = ManagerDao.getCurrentInstance()
                 .read("select a from Avaliacao a where a.user.id="+logado.getId()+" and a.livro.id="+idLivro,
                         Avaliacao.class);
-        if(av==null)
+        if(av.isEmpty())
             return 0;
         return av.get(0).getRating();
     }
