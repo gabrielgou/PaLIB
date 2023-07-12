@@ -52,8 +52,11 @@
                                     <h:outputText value="Preço: "/>
                                     <h:outputText value="R$ ${item.preco}"/>
                                     <h:outputText value="Avaliação" />
-                                    <p:rating value="#{item.mediaRating()}" readonly="true"/>
-                                    <h:outputText value="#{item.mediaRating()}"/>
+                                    <p:panelGrid columns="2" layout="flex"
+                                                 columnClasses="col-12, col-2">
+                                        <p:rating value="#{item.mediaRating()}" readonly="true"/>
+                                        <h:outputText value="#{item.mediaRating()} de #{item.avaliacao.size()} avaliações"/>
+                                    </p:panelGrid>                                    
                                 </h:panelGrid>
                                 <h:outputText
                                     value="#{item.sinopse}" />
