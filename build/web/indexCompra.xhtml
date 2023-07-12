@@ -5,12 +5,13 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Página Inicial</title>
     </h:head>
     <h:body>
-        <b:growl delay="4000" show-summary="true" show-detail="true"/>
+        <!--<b:growl delay="4000" show-summary="true" show-detail="true"/>
 
         <b:jumbotron style="height: 2rem" class="Navbar">
             <div style="display: flex">
@@ -24,7 +25,8 @@
                     <a href="#">Logout</a>
                 </div>
             </div>
-        </b:jumbotron>
+        </b:jumbotron>-->
+        <ui:include src="menuCliente.xhtml"/>
 
         <b:form id="formCards" class="ListaLivros" style="display: flex; flex-wrap: wrap">
             <p:dataTable var="item" value="#{livroController.readAll()}" widgetVar="livrosTable"
@@ -51,6 +53,7 @@
                                     <h:outputText value="R$ ${item.preco}"/>
                                     <h:outputText value="Avaliação" />
                                     <p:rating value="#{item.mediaRating()}" readonly="true"/>
+                                    <h:outputText value="#{item.mediaRating()}"/>
                                 </h:panelGrid>
                                 <h:outputText
                                     value="#{item.sinopse}" />

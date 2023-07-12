@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <b:growl delay="4000" show-detail="true" show-summary="true" auto-update="true"/>        
+         <c:if test="#{loginController.tipoLogado ne 'usuario'}">
+        
+            <script>
+                location.href="index.xhtml";
+            </script>
+            
+        </c:if>
+        <b:form id="formMenuCliente" >
+            
+            <b:navBar brand="Home" brand-style="color:white" brand-href="indexCompra.xhtml" fluid="true" inverse="true">
+                <b:navbarLinks style="float: right; color: white" pull="right">
+                    <b:navCommandLink style="color:white" value="Meus Livros" href="indexMeusLivros.xhtml"/>
+                    <b:navCommandLink style="color:white" value="Meus Pedidos" href="indexMeusPedidos.xhtml"/>
+                    <b:dropMenu style="color:white;" value="Cliente: #{(loginController.usuarioLogado ne null)?loginController.usuarioLogado.nome:''}">
+                        <b:navLink value="Meu Perfil" href="#"/>
+                        <b:navLink value="Mudar Senha" href="#"/>
+                        <b:navCommandLink ajax="false" value="Sair" href='index.xhtml'  action="#{loginController.logout()}"/>
+                    </b:dropMenu>                    
+                </b:navbarLinks>
+            </b:navBar>
+            
+            
+        </b:form>
+    </h:body>
+</html>
+

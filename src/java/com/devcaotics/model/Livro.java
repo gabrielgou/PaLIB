@@ -132,13 +132,14 @@ public class Livro implements Serializable {
         this.avaliacao = avaliacao;
     }
     
-    public Integer mediaRating()
+    public int mediaRating()
     {
-        Integer media=0;
-        Integer count=0;
+        int media=0;
+        int count=0;
         for(Avaliacao av : this.avaliacao)
         {
             media+=av.getRating();
+            count++;
         }
         return count!=0?media/count:null;
     }

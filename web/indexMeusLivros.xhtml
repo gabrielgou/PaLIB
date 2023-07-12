@@ -5,53 +5,58 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Meus Livros</title>
     </h:head>
     <h:body>
         <b:growl delay="4000" show-summary="true" show-detail="true"/>
         
-        <b:jumbotron style="height: 2rem" class="Navbar">
-            <div style="display: flex">
-                <div style="margin-left: 3rem">
-                    Você está logado como: <b> ${loginController.usuarioLogado.nome}</b>, com o CPF: <b>${loginController.usuarioLogado.cpf}</b>.
-                </div>
-                <div style="position: absolute; right: 3rem; display: flex; gap: 2rem">
-                    <a href="indexCompra.xhtml">Página Inicial</a>
-                    <a href="indexMeusPedidos.xhtml">Meus Pedidos</a>
-                    <a href="indexLivro.xhtml">[ADM]Livros</a>
-                </div>
-            </div>
-        </b:jumbotron>
-        <b:form id="formCards" class="ListaLivros" style="display: flex; flex-wrap: wrap">
-            <c:forEach items="#{livroController.readAllFromUser()}"
-                       var="item" varStatus="i"> 
-                <p:card style="width: 23rem; margin-bottom: 5px; margin-left: 2em" class="CardLivro">
-                    <f:facet name="header" class="TituloLivro"><h3 style="padding: 2rem 0 0 1.6rem; margin: 0">#{item.nome}</h3></f:facet>
-                    <div style="display: flex; justify-content: center; margin: 0; padding: 0">
-                        <img src="LivroFotoDownloader?idLivro=#{item.id}"
-                             style="width: 20rem; border-radius: 0.5rem" />
-                    </div>
-                    <br/>
-                    <div style="margin-left: 0.6rem;">
-                        <div style="font-size: 1.5rem; margin: 1rem 0 1rem 0">
-                            <h:outputText value="Autor: "/>
-                            <h:outputText value="${item.autor}"/><br/>
-                            <h:outputText value="Sinopse: "/>
-                            <h:outputText value="${item.sinopse}"/><br/>
-                            <h:outputText value="Preço: "/>
-                            <h:outputText value="R$ ${item.preco}"/><br/>
+        <ui:include src="menuCliente.xhtml"/>
+        <b:form id="formCards" class="ListaPedidos" style="padding: 10px">
+            <b:dataTable value="#{pedidoController.readFromUser()}" var="item" ajax="false" style="width: 100%" >
+                <b:dataTableColumn label="ID" >
+                    <h:outputText value="ID do Pedido: #{item.id}"/>
+                </b:dataTableColumn>
+                <b:dataTableColumn label="Livros">
+                    <p:card style="width: 23rem; margin-bottom: 5px; margin-left: 2em" class="CardLivro">
+                        <f:facet name="header" class="IDPedido"><h3 style="margin-left: 2rem">ID do Pedido: #{item.id}</h3></f:facet>
+                        <div style="margin-left: 0.6rem; font-size: 1.5rem">
+                            <b><h:outputText id="labelPago" value="${item.pago?'Pagamento Realizado':'Aguardando Pagamento'}">
+                                </h:outputText></b>
+                            <img src="LivroFotoDownloader?idLivro=#{item.livro.id}"
+                                 style="width: 20rem; border-radius: 0.5rem; margin-top: 1rem" />
                         </div>
-                        <div style="display: flex; gap: 1rem;">
+                        <br/>
+                        <div style="margin-left: 0.6rem;">
+                            <div style="font-size: 1.5rem; margin: 1rem 0 1rem 0">
+                                <h:outputText value="Nome: "/>
+                                <h:outputText value="${item.livro.nome}"/><br/>
+                                <h:outputText value="Autor: "/>
+                                <h:outputText value="${item.livro.autor}"/><br/>
+                                <h:outputText value="Preço: "/>
+                                <h:outputText value="R$ ${item.livro.preco}"/><br/>
+                            </div>
                             <p:commandButton style="font-size: 1.5rem" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
                                              icon="pi pi-arrow-down" styleClass="mr-2" disabled="#{livroController.existsBookFromUser(item.id) eq false?'false':'true'}">
                                 <p:fileDownload  value="#{FileDownload.getFile(item.id)}"/>
                             </p:commandButton>
+                            <p:rating value="#{avaliacaoController.rating}" >
+                                <p:ajax event="rate" listener="#{avaliacaoController.onrate}"/>
+                            </p:rating>
+                            <p:commandButton icon="glyphicon glyphicon-ok" ajax="true" action="#{avaliacaoController.cadastrar(item.livro.id)}" >
+                                <p:confirm message="Deseja cadastrar a avaliação de #{avaliacaoController.rating} estrelas?s"/>
+                            </p:commandButton>
                         </div>
-                    </div>
-                </p:card>
-            </c:forEach>
+                    </p:card>
+                </b:dataTableColumn>
+                
+            </b:dataTable>
+            <p:confirmDialog global="true">
+                <p:commandButton value="sim" type="button" styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            </p:confirmDialog>
         </b:form>
     </h:body>
 </html>

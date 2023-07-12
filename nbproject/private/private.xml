@@ -12,26 +12,31 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Boleto.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/PagamentoController.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexCompra.xhtml</file>
-            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexMeusPedidos.xhtml</file>
-            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Livro.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/index.xhtml</file>
-            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexLivro.xhtml</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Pedido.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/LoginController.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/UsuarioController.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Avaliacao.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Usuario.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/CompraLivroController.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/FileDownloadView.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexAdmin.xhtml</file>
-            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcoatics/controllers/servlets/LivroFotoDownloader.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexMeusLivros.xhtml</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcoatics/controllers/servlets/PagamentoBoletoPix.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/BoletoResponse.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/menuCliente.xhtml</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/LivroController.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/PedidoCrontroller.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Boleto.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/PagamentoController.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexMeusPedidos.xhtml</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Formats.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/model/Livro.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/web/indexLivro.xhtml</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcaotics/controllers/FileDownloadView.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/Documentos/NetBeansProjects/PaLIB/src/java/com/devcoatics/controllers/servlets/LivroFotoDownloader.java</file>
         </group>
     </open-files>
 </project-private>

@@ -142,6 +142,9 @@
                                                  icon="pi pi-arrow-down" styleClass="mr-2">
                                     <p:fileDownload  value="#{FileDownload.getFile(item.id)}"/>
                                 </p:commandButton>
+                                <p:commandButton style="color:red;" value="Deletar" ajax="false" onclick="" onsuccess="@form">
+                                    <f:setPropertyActionListener value="#{item}" target="#{livroController.selLivro}"
+                                </p:commandButton> 
                             </div>
                         </div>
                     </p:card>
