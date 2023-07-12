@@ -85,7 +85,7 @@ public class AvaliacaoController implements Serializable {
         List<Avaliacao> av = ManagerDao.getCurrentInstance()
                 .read("select a from Avaliacao a where a.user.id="+logado.getId()+" and a.livro.id="+idLivro,
                         Avaliacao.class);
-        return av!=null;
+        return !av.isEmpty();
     }
     public int readAllFromLivro(int idLivro) {
         Usuario logado = ((LoginController) ((HttpSession) (FacesContext.
