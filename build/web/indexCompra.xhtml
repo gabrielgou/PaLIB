@@ -71,7 +71,7 @@
                                 <p:commandButton value="Comprar" oncomplete="PF('widDialogAdicionarCarrinho').show()"
                                                  update=':dialogAdicionarCarrinho' 
                                                  style="font-size: 1.5rem; visibility: #{livroController.existsBookFromUser(item.id) eq true ?'visible':'hidden'} "> 
-                                    <f:setPropertyActionListener value="${item}" target="${compraLivroController.selLivro}"/>
+                                    <f:setPropertyActionListener value="#{item}" target="#{compraLivroController.selLivro}"/>
                                 </p:commandButton>
                             </p:row>
                         </p:fieldset>

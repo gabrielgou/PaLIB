@@ -116,4 +116,35 @@ public class Usuario implements Serializable {
     public void setAvaliacao(List<Avaliacao> avaliacao) {
         this.avaliacao = avaliacao;
     }    
+ 
+    @Override
+    public String toString()
+    {
+       String saida = "Usuario{id="+this.id+", cpf="+this.cpf+", nome="+this.nome+"}";
+       return saida;
+    }
+    @Override
+    public int hashCode()
+    {
+        return (int)this.id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
 }
