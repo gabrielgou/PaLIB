@@ -142,9 +142,11 @@
                                                  icon="pi pi-arrow-down" styleClass="mr-2">
                                     <p:fileDownload  value="#{FileDownload.getFile(item.id)}"/>
                                 </p:commandButton>
-                                <p:commandButton style="color:red;" value="Deletar" ajax="false" onclick="" onsuccess="@form">
-                                    <f:setPropertyActionListener value="#{item}" target="#{livroController.selLivro}"
-                                </p:commandButton> 
+                                <ui:remove><b:commandButton value="Deletar" style="float: right" style-class="btn btn-danger"
+                                                 action="#{livroController.deletar()}" >
+                                    <f:setPropertyActionListener value="#{item}" target="#{livroController.selLivro}"/>
+                                    </b:commandButton>--></ui:remove>
+                                <!-- comentario correto com ui:remove, sóo da pra apagar o livro se ele não já foi vendido -->
                             </div>
                         </div>
                     </p:card>
