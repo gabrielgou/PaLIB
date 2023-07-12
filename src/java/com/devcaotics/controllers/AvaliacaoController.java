@@ -38,9 +38,7 @@ public class AvaliacaoController implements Serializable {
        this.avaliacao=new Avaliacao();
     }
     public void onrate(RateEvent<Integer> rateEvent) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Avaliação: ", "Você avaliou em:" + rateEvent.getRating()+" estrelas");
         this.rating = rateEvent.getRating();
-        FacesContext.getCurrentInstance().addMessage(null, message);
     }
     public void cadastrar(long idLivro) {
         Usuario logado = ((LoginController) ((HttpSession) (FacesContext.
@@ -57,6 +55,8 @@ public class AvaliacaoController implements Serializable {
         ManagerDao.getCurrentInstance().update(logado);
         ManagerDao.getCurrentInstance().update(l);
         avaliacao=new Avaliacao();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Avaliação: ", "Você avaliou em:" + this.rating+" estrelas");
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public List<Avaliacao> readAll() {
