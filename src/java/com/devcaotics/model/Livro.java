@@ -143,4 +143,15 @@ public class Livro implements Serializable {
         }
         return count!=0?media/count:0;
     }
+    public float floatRating()
+    {
+        float media=0;
+        float count=0;
+        for(Avaliacao av : this.avaliacao)
+        {
+            media+=av.getRating();
+            count++;
+        }
+        return count!=0?media/count:0;
+    }
 }

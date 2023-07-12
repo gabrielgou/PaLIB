@@ -55,7 +55,7 @@
                                     <p:panelGrid columns="2" layout="flex"
                                                  columnClasses="col-12, col-2">
                                         <p:rating value="#{item.mediaRating()}" readonly="true"/>
-                                        <h:outputText value="#{item.mediaRating()} de #{item.avaliacao.size()} avaliações"/>
+                                        <h:outputText value="#{item.floatRating()} de #{item.avaliacao.size()} avaliações"/>
                                     </p:panelGrid>                                    
                                 </h:panelGrid>
                                 <h:outputText
